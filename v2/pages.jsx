@@ -9,20 +9,20 @@ function ResearchPage() {
       intro="Multidisciplinary research bridging pathophysiology, preclinical science, and bioengineering — translating benchtop biomedical innovation into clinical impact."
     >
       {/* Research Summary — with figure */}
-      <section style={{ padding: '48px 40px', borderBottom: `1px solid ${line}` }}>
+      <section style={{ padding: '48px 56px', borderBottom: `1px solid ${line}` }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 40, alignItems: 'center' }}>
           <div>
-            <div style={{ fontFamily: mono, fontSize: 11, letterSpacing: 2, color: B.accent, marginBottom: 10 }}>
+            <div style={{ fontFamily: mono, fontSize: 15, letterSpacing: 2, color: B.accent, marginBottom: 10 }}>
               ── RESEARCH SUMMARY
             </div>
             <h2 style={{ fontSize: 30, fontWeight: 700, letterSpacing: -0.8, margin: '0 0 18px', lineHeight: 1.2 }}>
               A <em style={{ fontFamily: serif, fontStyle: 'italic', color: B.accent }}>mechanism-driven</em> approach
               to preclinical science for treating refractory human diseases.
             </h2>
-            <p style={{ fontSize: 14.5, lineHeight: 1.75, color: ink2, margin: '0 0 14px' }}>
+            <p style={{ fontSize: 18.5, lineHeight: 1.75, color: ink2, margin: '0 0 14px' }}>
               Rigorous preclinical evaluation of novel therapeutics demands integration across pharmacology, pathophysiology, and translational science — asking not only whether a therapy works, but how and why it works in the living system.
             </p>
-            <p style={{ fontSize: 14.5, lineHeight: 1.75, color: ink2, margin: 0 }}>
+            <p style={{ fontSize: 18.5, lineHeight: 1.75, color: ink2, margin: 0 }}>
               Dual training <strong>(D.V.M., Ph.D. in Veterinary Pathology)</strong> anchors our ability to evaluate therapeutic efficacy, safety, and mechanism in animal disease models — spanning PK/PD, toxicology, histopathological assessment, and IND-enabling translational studies for chronic and refractory human diseases.
             </p>
           </div>
@@ -34,18 +34,18 @@ function ResearchPage() {
               <img src="v2/assets/research-summary.png" alt="Research summary schematic"
                    style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 4 }}/>
             </div>
-            <figcaption style={{ fontFamily: mono, fontSize: 10, color: muted, marginTop: 8, letterSpacing: 0.5 }}>
+            <figcaption style={{ fontFamily: mono, fontSize: 14, color: muted, marginTop: 8, letterSpacing: 0.5 }}>
               FIG · Development of minimally invasive therapy and disease modeling for personalized medicine
             </figcaption>
           </figure>
         </div>
       </section>
 
-      {/* Two-track framework with figures */}
-      <section style={{ padding: '48px 40px', borderBottom: `1px solid ${line}`, background: '#fafaf8' }}>
+      {/* Three-track framework with figures */}
+      <section style={{ padding: '48px 56px', borderBottom: `1px solid ${line}`, background: '#fafaf8' }}>
         <div style={{ textAlign: 'center', marginBottom: 36 }}>
-          <div style={{ fontFamily: mono, fontSize: 11, letterSpacing: 2, color: B.accent, marginBottom: 8 }}>
-            ── TWO COMPLEMENTARY TRACKS
+          <div style={{ fontFamily: mono, fontSize: 15, letterSpacing: 2, color: B.accent, marginBottom: 8 }}>
+            ── THREE COMPLEMENTARY TRACKS
           </div>
           <h2 style={{ fontSize: 26, fontWeight: 700, letterSpacing: -0.5, margin: 0 }}>
             Research framework
@@ -96,23 +96,23 @@ function ResearchPage() {
                     color: t.tone, opacity: 0.08, lineHeight: 1,
                   }}>{t.no}</div>
                   <div style={{
-                    fontFamily: mono, fontSize: 10, letterSpacing: 2, color: t.tone,
+                    fontFamily: mono, fontSize: 16, letterSpacing: 2, color: t.tone,
                     fontWeight: 600, marginBottom: 12,
                   }}>TRACK {t.no}</div>
-                  <h3 style={{ fontSize: 22, fontWeight: 700, letterSpacing: -0.5, margin: '0 0 4px', lineHeight: 1.25 }}>
+                  <h3 style={{ fontSize: 24, fontWeight: 700, letterSpacing: -0.5, margin: '0 0 4px', lineHeight: 1.25 }}>
                     {t.en}
                   </h3>
-                  <div style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 16, color: muted, marginBottom: 18 }}>
+                  <div style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 22, color: muted, marginBottom: 18 }}>
                     {t.ko}
                   </div>
-                  <p style={{ fontSize: 13.5, lineHeight: 1.65, color: ink2, margin: '0 0 16px' }}>
+                  <p style={{ fontSize: 19.5, lineHeight: 1.65, color: ink2, margin: '0 0 16px' }}>
                     {t.desc}
                   </p>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
                     {t.keywords.map(k => (
                       <span key={k} style={{
                         padding: '4px 10px', borderRadius: 999,
-                        fontSize: 11, color: t.tone, background: 'white',
+                        fontSize: 17, color: t.tone, background: 'white',
                         border: `1px solid ${t.tone}44`,
                       }}>{k}</span>
                     ))}
@@ -122,7 +122,7 @@ function ResearchPage() {
                   padding: 20, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                   <img src={t.img} alt={t.en}
                        style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 6 }}/>
-                  <div style={{ fontFamily: mono, fontSize: 10, color: muted, marginTop: 10, letterSpacing: 0.3 }}>
+                  <div style={{ fontFamily: mono, fontSize: 16, color: muted, marginTop: 10, letterSpacing: 0.3 }}>
                     {t.caption}
                   </div>
                 </div>
@@ -133,7 +133,7 @@ function ResearchPage() {
       </section>
 
       {/* Research Goal */}
-      <section style={{ padding: '48px 40px', borderTop: `1px solid ${line}`,
+      <section style={{ padding: '48px 56px', borderTop: `1px solid ${line}`,
         background: `linear-gradient(135deg, ${B.accent}08 0%, #fafaf8 100%)` }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: 40, alignItems: 'center' }}>
           <figure style={{ margin: 0 }}>
@@ -144,22 +144,22 @@ function ResearchPage() {
               <img src="v2/assets/research-goal.png" alt="Translational bioconvergent solutions"
                    style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 4 }}/>
             </div>
-            <figcaption style={{ fontFamily: mono, fontSize: 10, color: muted, marginTop: 8, letterSpacing: 0.5 }}>
+            <figcaption style={{ fontFamily: mono, fontSize: 14, color: muted, marginTop: 8, letterSpacing: 0.5 }}>
               FIG · Bridging Bioengineering, Clinical Application, and Pharmaceutical Science toward translational/bioconvergent solutions for human health
             </figcaption>
           </figure>
           <div>
-            <div style={{ fontFamily: mono, fontSize: 11, letterSpacing: 2, color: B.accent, marginBottom: 10 }}>
+            <div style={{ fontFamily: mono, fontSize: 15, letterSpacing: 2, color: B.accent, marginBottom: 10 }}>
               ── RESEARCH GOAL
             </div>
-            <h2 style={{ fontSize: 28, fontWeight: 700, letterSpacing: -0.8, margin: '0 0 18px', lineHeight: 1.25 }}>
+            <h2 style={{ fontSize: 30, fontWeight: 700, letterSpacing: -0.8, margin: '0 0 18px', lineHeight: 1.25 }}>
               Advancing <em style={{ fontFamily: serif, fontStyle: 'italic', color: B.accent }}>mechanism-based,
               translationally ready</em> therapeutics for refractory diseases.
             </h2>
-            <p style={{ fontSize: 14.5, lineHeight: 1.75, color: ink2, margin: '0 0 14px' }}>
+            <p style={{ fontSize: 20.5, lineHeight: 1.75, color: ink2, margin: '0 0 14px' }}>
               Developing effective therapeutics for refractory human diseases demands convergence across pharmacology, pathophysiology, and clinical science. Our research generates the preclinical evidence — efficacy, safety, mechanism — that determines whether a new therapeutic is ready to advance toward the clinic.
             </p>
-            <p style={{ fontSize: 14.5, lineHeight: 1.75, color: ink2, margin: 0 }}>
+            <p style={{ fontSize: 20.5, lineHeight: 1.75, color: ink2, margin: 0 }}>
               This mission aligns directly with the educational and research goals of the
               <strong> College of Pharmacy at Korea University</strong> —
               training the next generation of pharmaceutical scientists to translate laboratory
@@ -211,14 +211,14 @@ function PeoplePage() {
                 ['LinkedIn ↗', 'https://www.linkedin.com/in/hanjun-kim-158162183/'],
               ].map(([l, href]) => (
                 <a key={l} href={href} target="_blank" rel="noopener" style={{
-                  padding: '7px 12px', fontSize: 12, border: `1px solid ${line2}`,
+                  padding: '7px 12px', fontSize: 16, border: `1px solid ${line2}`,
                   borderRadius: 6, color: ink2, cursor: 'pointer', textAlign: 'center',
                 }}>{l}</a>
               ))}
             </div>
           </div>
           <div>
-            <div style={{ fontFamily: mono, fontSize: 11, letterSpacing: 2, color: B.accent, marginBottom: 8 }}>
+            <div style={{ fontFamily: mono, fontSize: 15, letterSpacing: 2, color: B.accent, marginBottom: 8 }}>
               PRINCIPAL INVESTIGATOR
             </div>
             <h2 style={{ fontSize: 40, fontWeight: 700, letterSpacing: -1.2, margin: '0 0 4px', lineHeight: 1 }}>
@@ -227,11 +227,11 @@ function PeoplePage() {
             <div style={{ fontFamily: serif, fontSize: 24, fontStyle: 'italic', color: muted, marginBottom: 6 }}>
               김한준 · Ph.D.
             </div>
-            <div style={{ fontSize: 14, color: ink2, marginBottom: 20 }}>
+            <div style={{ fontSize: 18, color: ink2, marginBottom: 20 }}>
               Associate Professor · College of Pharmacy, Korea University<br/>
               고려대학교 첨단융합신약학과 학과장
             </div>
-            <p style={{ fontSize: 14.5, lineHeight: 1.7, color: ink2, maxWidth: 680, margin: '0 0 22px' }}>
+            <p style={{ fontSize: 18.5, lineHeight: 1.7, color: ink2, maxWidth: 680, margin: '0 0 22px' }}>
               Dr. Kim leads a preclinical science laboratory at the interface of pathophysiology, translational therapeutics, and in-vivo disease modeling. Drawing on dual training in veterinary medicine (D.V.M.) and veterinary pathology (Ph.D.), his group evaluates the efficacy, safety, and mechanism of novel therapeutics — with a translational focus on stimuli-responsive embolic agents for refractory vascular diseases.
             </p>
 
@@ -247,8 +247,8 @@ function PeoplePage() {
                   ['Editorial board', 'Artificial Organs (2021 ~)'],
                 ].map(([k,v],i) => (
                   <div key={i} style={{ padding: '10px 14px', background: bg2, borderRadius: 8 }}>
-                    <div style={{ fontSize: 11, color: muted, marginBottom: 2 }}>{k}</div>
-                    <div style={{ fontWeight: 500, color: ink, fontSize: 13 }}>{v}</div>
+                    <div style={{ fontSize: 15, color: muted, marginBottom: 2 }}>{k}</div>
+                    <div style={{ fontWeight: 500, color: ink, fontSize: 17 }}>{v}</div>
                   </div>
                 ))}
               </div>
@@ -382,15 +382,15 @@ function AlumniSection({ alumni }) {
               style={{ width: '100%', height: 420, objectFit: 'cover', objectPosition: 'top', display: 'block' }}/>
             <div style={{ padding: '16px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
-                <div style={{ fontSize: 16, fontWeight: 700, color: ink }}>{lightbox.name}</div>
-                <div style={{ fontFamily: mono, fontSize: 11, color: muted, marginTop: 2 }}>{lightbox.period}</div>
+                <div style={{ fontSize: 20, fontWeight: 700, color: ink }}>{lightbox.name}</div>
+                <div style={{ fontFamily: mono, fontSize: 15, color: muted, marginTop: 2 }}>{lightbox.period}</div>
                 {lightbox.affil && (
-                  <div style={{ fontSize: 12, color: ink2, marginTop: 4, fontStyle: 'italic' }}>{lightbox.affil}</div>
+                  <div style={{ fontSize: 16, color: ink2, marginTop: 4, fontStyle: 'italic' }}>{lightbox.affil}</div>
                 )}
               </div>
               <button onClick={() => setLightbox(null)} style={{
                 width: 28, height: 28, borderRadius: 999, border: `1px solid ${line2}`,
-                background: bg2, cursor: 'pointer', fontSize: 14, color: muted,
+                background: bg2, cursor: 'pointer', fontSize: 18, color: muted,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}>✕</button>
             </div>
@@ -398,10 +398,10 @@ function AlumniSection({ alumni }) {
         </div>
       )}
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 20 }}>
-        <div style={{ fontFamily: mono, fontSize: 11, letterSpacing: 2, color: muted, fontWeight: 600 }}>── ALUMNI</div>
+        <div style={{ fontFamily: mono, fontSize: 15, letterSpacing: 2, color: muted, fontWeight: 600 }}>── ALUMNI</div>
         <h2 style={{ fontSize: 22, fontWeight: 700, letterSpacing: -0.5, margin: 0, color: ink2 }}>Past researchers</h2>
         <div style={{ flex: 1, height: 1, background: line }}/>
-        <div style={{ fontFamily: mono, fontSize: 11, color: muted }}>{alumni.length} alumni</div>
+        <div style={{ fontFamily: mono, fontSize: 15, color: muted }}>{alumni.length} alumni</div>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 10 }}>
         {alumni.map((a, i) => (
@@ -420,15 +420,15 @@ function AlumniSection({ alumni }) {
                      style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }}/>
               ) : (
                 <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontFamily: serif, fontStyle: 'italic', fontSize: 16, color: muted }}>{a.name[0]}</div>
+                  fontFamily: serif, fontStyle: 'italic', fontSize: 20, color: muted }}>{a.name[0]}</div>
               )}
             </div>
             <div style={{ minWidth: 0, flex: 1 }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: ink, letterSpacing: -0.1,
+              <div style={{ fontSize: 17, fontWeight: 600, color: ink, letterSpacing: -0.1,
                 whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{a.name}</div>
-              <div style={{ fontSize: 10.5, color: muted, fontFamily: mono, marginTop: 1 }}>{a.period}</div>
+              <div style={{ fontSize: 14.5, color: muted, fontFamily: mono, marginTop: 1 }}>{a.period}</div>
             </div>
-            {a.photo && <div style={{ fontSize: 10, color: muted, flexShrink: 0 }}>↗</div>}
+            {a.photo && <div style={{ fontSize: 14, color: muted, flexShrink: 0 }}>↗</div>}
           </div>
         ))}
       </div>
@@ -441,11 +441,11 @@ function MembersSection({ label, sub, members, detailed }) {
     <section style={{ padding: '40px', borderTop: `1px solid ${line}` }}>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 20 }}>
         <div style={{
-          fontFamily: mono, fontSize: 11, letterSpacing: 2, color: B.accent, fontWeight: 600,
+          fontFamily: mono, fontSize: 15, letterSpacing: 2, color: B.accent, fontWeight: 600,
         }}>── {label}</div>
         <h2 style={{ fontSize: 22, fontWeight: 700, letterSpacing: -0.5, margin: 0 }}>{sub}</h2>
         <div style={{ flex: 1, height: 1, background: line }}/>
-        <div style={{ fontFamily: mono, fontSize: 11, color: muted }}>{members.length} {members.length > 1 ? 'members' : 'member'}</div>
+        <div style={{ fontFamily: mono, fontSize: 15, color: muted }}>{members.length} {members.length > 1 ? 'members' : 'member'}</div>
       </div>
       <div style={{
         display: 'grid',
@@ -472,7 +472,7 @@ function MemberCard({ m, detailed }) {
         height: detailed ? 260 : 180,
         background: '#f4f0e6',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        color: muted, fontFamily: mono, fontSize: 10, letterSpacing: 2,
+        color: muted, fontFamily: mono, fontSize: 14, letterSpacing: 2,
         position: 'relative', overflow: 'hidden',
       }}>
         {m.photo ? (
@@ -487,7 +487,7 @@ function MemberCard({ m, detailed }) {
           }}>{m.name[0]}</div>
         )}
         <div style={{ position: 'absolute', top: 10, left: 12,
-          fontFamily: mono, fontSize: 9, letterSpacing: 1.5,
+          fontFamily: mono, fontSize: 13, letterSpacing: 1.5,
           color: m.photo ? 'white' : ink2,
           background: m.photo ? 'rgba(0,0,0,0.45)' : 'transparent',
           padding: m.photo ? '2px 6px' : 0, borderRadius: 3,
@@ -497,27 +497,27 @@ function MemberCard({ m, detailed }) {
         </div>
       </div>
       <div style={{ padding: 16, flex: 1, display: 'flex', flexDirection: 'column' }}>
-        <div style={{ fontSize: 15, fontWeight: 700, letterSpacing: -0.2, color: ink }}>{m.name}</div>
-        <div style={{ fontSize: 11.5, color: B.accent, fontWeight: 600, marginTop: 2, fontFamily: mono, letterSpacing: 0.5 }}>
+        <div style={{ fontSize: 19, fontWeight: 700, letterSpacing: -0.2, color: ink }}>{m.name}</div>
+        <div style={{ fontSize: 15.5, color: B.accent, fontWeight: 600, marginTop: 2, fontFamily: mono, letterSpacing: 0.5 }}>
           {m.role}
         </div>
         {m.period && (
-          <div style={{ fontSize: 11, color: muted, fontFamily: mono, marginTop: 4 }}>
+          <div style={{ fontSize: 15, color: muted, fontFamily: mono, marginTop: 4 }}>
             {m.period}
           </div>
         )}
         {m.affil && (
-          <div style={{ fontSize: 11.5, color: ink2, marginTop: 6, fontStyle: 'italic' }}>
+          <div style={{ fontSize: 15.5, color: ink2, marginTop: 6, fontStyle: 'italic' }}>
             {m.affil}
           </div>
         )}
         {detailed && m.edu && (
           <div style={{ marginTop: 10, paddingTop: 10, borderTop: `1px dashed ${line}` }}>
-            <div style={{ fontFamily: mono, fontSize: 9, letterSpacing: 1.5, color: muted, marginBottom: 4 }}>
+            <div style={{ fontFamily: mono, fontSize: 13, letterSpacing: 1.5, color: muted, marginBottom: 4 }}>
               EDUCATION
             </div>
             {m.edu.map((e, k) => (
-              <div key={k} style={{ fontSize: 11, color: ink2, lineHeight: 1.4, marginBottom: 2 }}>
+              <div key={k} style={{ fontSize: 15, color: ink2, lineHeight: 1.4, marginBottom: 2 }}>
                 {e}
               </div>
             ))}
@@ -528,17 +528,17 @@ function MemberCard({ m, detailed }) {
             {m.tags.map(t => (
               <span key={t} style={{
                 padding: '2px 7px', borderRadius: 4,
-                fontSize: 10, background: bg2, color: ink2, border: `1px solid ${line}`,
+                fontSize: 14, background: bg2, color: ink2, border: `1px solid ${line}`,
               }}>{t}</span>
             ))}
           </div>
         )}
         <div style={{ marginTop: 'auto', paddingTop: 10,
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-          fontFamily: mono, fontSize: 10, color: muted,
+          fontFamily: mono, fontSize: 14, color: muted,
         }}>
           <span>joined {m.since}</span>
-          {m.email && <span style={{ color: ink2, fontFamily: mono, fontSize: 10.5 }}>✉ {m.email}</span>}
+          {m.email && <span style={{ color: ink2, fontFamily: mono, fontSize: 14.5 }}>✉ {m.email}</span>}
         </div>
       </div>
     </div>
@@ -549,7 +549,7 @@ function CVSection({ label, children }) {
   return (
     <div style={{ marginBottom: 24 }}>
       <div style={{
-        fontFamily: mono, fontSize: 10, letterSpacing: 2, color: B.accent,
+        fontFamily: mono, fontSize: 14, letterSpacing: 2, color: B.accent,
         marginBottom: 10, textTransform: 'uppercase',
         paddingBottom: 6, borderBottom: `1px solid ${line}`,
       }}>── {label}</div>
@@ -567,10 +567,10 @@ function CVList({ items }) {
           padding: '10px 0',
           borderBottom: i < items.length - 1 ? `1px solid ${line}` : 'none',
         }}>
-          <div style={{ fontFamily: mono, fontSize: 11, color: muted, paddingTop: 2 }}>{when}</div>
+          <div style={{ fontFamily: mono, fontSize: 15, color: muted, paddingTop: 2 }}>{when}</div>
           <div>
-            <div style={{ fontWeight: 500, color: ink, fontSize: 13.5 }}>{what}</div>
-            {where && <div style={{ fontSize: 12, color: muted, marginTop: 2 }}>{where}</div>}
+            <div style={{ fontWeight: 500, color: ink, fontSize: 17.5 }}>{what}</div>
+            {where && <div style={{ fontSize: 16, color: muted, marginTop: 2 }}>{where}</div>}
           </div>
         </div>
       ))}
@@ -593,14 +593,14 @@ function CourseChip({ code, name, tone }) {
         background: hasCode ? (tone === 'grad' ? '#f4f5f7' : '#fdf4f3') : '#fafafa',
         borderRight: `1px solid ${line}`,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        fontFamily: mono, fontSize: 10.5, letterSpacing: 0.5,
+        fontFamily: mono, fontSize: 14.5, letterSpacing: 0.5,
         color: hasCode ? (tone === 'grad' ? ink : B.accent) : '#c0c0c0',
         fontWeight: 600,
       }}>
         {hasCode ? code : '···'}
       </div>
       <div style={{
-        padding: '8px 12px', fontSize: 12.5, color: ink,
+        padding: '8px 12px', fontSize: 16.5, color: ink,
         display: 'flex', alignItems: 'center', fontWeight: 500,
         lineHeight: 1.3,
       }}>
@@ -615,12 +615,12 @@ function TeachingGrid({ undergrad, graduate }) {
     <div style={{ marginBottom: 20 }}>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 10 }}>
         <div style={{
-          fontFamily: mono, fontSize: 10, letterSpacing: 1.5,
+          fontFamily: mono, fontSize: 14, letterSpacing: 1.5,
           color: tone === 'grad' ? ink : B.accent, fontWeight: 600,
         }}>{label}</div>
-        <div style={{ fontSize: 11, color: muted }}>{sub}</div>
+        <div style={{ fontSize: 15, color: muted }}>{sub}</div>
         <div style={{ flex: 1, height: 1, background: line }}/>
-        <div style={{ fontFamily: mono, fontSize: 10, color: muted }}>{courses.length} courses</div>
+        <div style={{ fontFamily: mono, fontSize: 14, color: muted }}>{courses.length} courses</div>
       </div>
       <div style={{
         display: 'grid',
@@ -704,7 +704,7 @@ function PubBadge({ children, color, bg, solid }) {
   if (solid) {
     return (
       <span style={{
-        fontSize: 10, fontFamily: mono, fontWeight: 700, letterSpacing: 0.8, textTransform: 'uppercase',
+        fontSize: 14, fontFamily: mono, fontWeight: 700, letterSpacing: 0.8, textTransform: 'uppercase',
         padding: '3px 8px', borderRadius: 3,
         color: '#fff', background: color || B.accent, whiteSpace: 'nowrap',
       }}>{children}</span>
@@ -712,7 +712,7 @@ function PubBadge({ children, color, bg, solid }) {
   }
   return (
     <span style={{
-      fontSize: 9.5, fontFamily: mono, letterSpacing: 1, textTransform: 'uppercase',
+      fontSize: 13.5, fontFamily: mono, letterSpacing: 1, textTransform: 'uppercase',
       padding: '2px 6px', borderRadius: 3,
       color: color || B.accent, background: bg || `${color || B.accent}15`,
     }}>{children}</span>
@@ -766,7 +766,7 @@ function PublicationsPage() {
       intro={`${all.length} peer-reviewed research and review articles. ${nCorr} as corresponding author, ${nFirst} as first/co-first, ${nCovers} featured as journal cover, ${nHanbitsa} selected as 한빛사 (Korean Bioscientists in the Spotlight). Use filters to browse by year, role, or search.`}
     >
       {/* Stat strip */}
-      <section style={{ padding: '24px 40px', display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 0,
+      <section style={{ padding: '24px 56px', display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 0,
         borderBottom: `1px solid ${line}`, background: bg2 }}>
         {[
           [all.length, 'Total papers'],
@@ -780,29 +780,29 @@ function PublicationsPage() {
               fontVariantNumeric: 'tabular-nums' }}>
               {n}{mark && <span style={{ color: B.accent, marginLeft: 4 }}>{mark}</span>}
             </div>
-            <div style={{ fontSize: 11, color: muted, marginTop: 6 }}>{label}</div>
+            <div style={{ fontSize: 15, color: muted, marginTop: 6 }}>{label}</div>
           </div>
         ))}
       </section>
 
       {/* Cover art wall — real uploaded journal covers, full width */}
-      <section style={{ padding: '56px 40px 40px', background: bg2,
+      <section style={{ padding: '56px 56px 40px', background: bg2,
         borderTop: `1px solid ${line}`, borderBottom: `1px solid ${line}` }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 32 }}>
           <div>
-            <div style={{ fontFamily: mono, fontSize: 11, letterSpacing: 2, color: B.accent, marginBottom: 8 }}>
+            <div style={{ fontFamily: mono, fontSize: 15, letterSpacing: 2, color: B.accent, marginBottom: 8 }}>
               ── COVER ART GALLERY
             </div>
             <h2 style={{ fontSize: 32, fontWeight: 700, letterSpacing: -1, margin: 0, color: ink }}>
               Featured on {realCovers.length} journal covers
             </h2>
-            <div style={{ fontSize: 13, color: muted, marginTop: 10, maxWidth: 620, lineHeight: 1.6 }}>
+            <div style={{ fontSize: 17, color: muted, marginTop: 10, maxWidth: 900, lineHeight: 1.6 }}>
               Research from our group has been selected for the cover artwork of <i>Advanced Materials</i>,
               {' '}<i>Advanced Science</i>, <i>Small</i>, <i>Advanced Healthcare Materials</i>,
               {' '}<i>Advanced Functional Materials</i>, and other leading journals.
             </div>
           </div>
-          <div style={{ fontSize: 11, fontFamily: mono, color: muted, letterSpacing: 1 }}>
+          <div style={{ fontSize: 15, fontFamily: mono, color: muted, letterSpacing: 1 }}>
             CLICK ANY COVER TO VIEW PAPER →
           </div>
         </div>
@@ -821,14 +821,14 @@ function PublicationsPage() {
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}/>
               </div>
               <div style={{ marginTop: 10 }}>
-                <div style={{ fontFamily: mono, fontSize: 10, color: B.accent, marginBottom: 3, letterSpacing: 0.5 }}>
+                <div style={{ fontFamily: mono, fontSize: 14, color: B.accent, marginBottom: 3, letterSpacing: 0.5 }}>
                   №{p.n} · {p.y}
                 </div>
-                <div style={{ fontSize: 11.5, fontWeight: 600, color: ink,
+                <div style={{ fontSize: 15.5, fontWeight: 600, color: ink,
                   letterSpacing: -0.1, lineHeight: 1.3, marginBottom: 3 }}>
                   {p.journal}
                 </div>
-                <div style={{ fontSize: 10, color: muted, fontStyle: 'italic', lineHeight: 1.4 }}>
+                <div style={{ fontSize: 14, color: muted, fontStyle: 'italic', lineHeight: 1.4 }}>
                   {p.cover}
                 </div>
               </div>
@@ -838,17 +838,17 @@ function PublicationsPage() {
       </section>
 
       {/* Filter bar */}
-      <section style={{ padding: '12px 40px 0' }}>
+      <section style={{ padding: '12px 56px 0' }}>
         <div style={{
           display: 'flex', gap: 14, alignItems: 'center', marginBottom: 20,
           padding: '12px 14px', background: bg2, borderRadius: 12, border: `1px solid ${line}`,
           flexWrap: 'wrap',
         }}>
-          <div style={{ fontSize: 11, color: muted, fontFamily: mono, letterSpacing: 1 }}>YEAR</div>
+          <div style={{ fontSize: 15, color: muted, fontFamily: mono, letterSpacing: 1 }}>YEAR</div>
           <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
             {years.map(y => (
               <button key={y} onClick={() => setYear(y)} style={{
-                padding: '5px 10px', borderRadius: 5, fontSize: 12,
+                padding: '5px 10px', borderRadius: 5, fontSize: 16,
                 border: `1px solid ${year === y ? ink : line2}`,
                 background: year === y ? ink : 'white',
                 color: year === y ? 'white' : ink2,
@@ -860,11 +860,11 @@ function PublicationsPage() {
 
           <div style={{ width: 1, height: 20, background: line2, margin: '0 4px' }}/>
 
-          <div style={{ fontSize: 11, color: muted, fontFamily: mono, letterSpacing: 1 }}>ROLE</div>
+          <div style={{ fontSize: 15, color: muted, fontFamily: mono, letterSpacing: 1 }}>ROLE</div>
           <div style={{ display: 'flex', gap: 3 }}>
             {[['All','All'],['corr','Corresponding *'],['first','First / co-first'],['cover','Cover art'],['hanbitsa','🇰🇷 한빛사']].map(([k,label]) => (
               <button key={k} onClick={() => setRoleFilter(k)} style={{
-                padding: '5px 10px', borderRadius: 5, fontSize: 12,
+                padding: '5px 10px', borderRadius: 5, fontSize: 16,
                 border: `1px solid ${roleFilter === k ? ink : line2}`,
                 background: roleFilter === k ? ink : 'white',
                 color: roleFilter === k ? 'white' : ink2,
@@ -876,13 +876,13 @@ function PublicationsPage() {
           <input value={q} onChange={e => setQ(e.target.value)} placeholder="Search title, author, journal…"
             style={{
               padding: '7px 12px', borderRadius: 6, border: `1px solid ${line2}`,
-              fontSize: 12, fontFamily: 'inherit', width: 220, outline: 'none',
+              fontSize: 16, fontFamily: 'inherit', width: 220, outline: 'none',
               marginLeft: 'auto',
             }}/>
           <div style={{ display: 'flex', gap: 2, padding: 2, background: 'white', borderRadius: 6, border: `1px solid ${line}` }}>
             {[['list','List'],['covers','Grid']].map(([v,label]) => (
               <button key={v} onClick={() => setView(v)} style={{
-                padding: '5px 12px', borderRadius: 4, fontSize: 11,
+                padding: '5px 12px', borderRadius: 4, fontSize: 15,
                 background: view === v ? ink : 'transparent',
                 color: view === v ? 'white' : muted,
                 border: 'none', cursor: 'pointer',
@@ -894,12 +894,12 @@ function PublicationsPage() {
 
       {/* List / covers */}
       <section style={{ padding: '0 40px 48px' }}>
-        <div style={{ fontSize: 12, color: muted, marginBottom: 14 }}>
+        <div style={{ fontSize: 16, color: muted, marginBottom: 14 }}>
           Showing {filtered.length} of {all.length} papers
           {year !== 'All' && <> · year {year}</>}
           {roleFilter !== 'All' && <> · role: {roleFilter}</>}
           {q && <> · "{q}"</>}
-          <span style={{ marginLeft: 16, fontFamily: mono, fontSize: 10 }}>
+          <span style={{ marginLeft: 16, fontFamily: mono, fontSize: 14 }}>
             <span style={{ color: ink, fontWeight: 700 }}>Kim HJ</span> = PI ·{' '}
             <span style={{ borderBottom: `1.5px solid ${B.accent}` }}>name*</span> = corresponding
           </span>
@@ -915,7 +915,7 @@ function PublicationsPage() {
                 }}>
                   <div style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 36, fontWeight: 600,
                     letterSpacing: -1, color: ink, lineHeight: 1, flexShrink: 0, marginRight: 8 }}>{y}</div>
-                  <div style={{ fontSize: 11, color: muted, fontFamily: mono, letterSpacing: 1, textTransform: 'uppercase', paddingBottom: 4 }}>
+                  <div style={{ fontSize: 15, color: muted, fontFamily: mono, letterSpacing: 1, textTransform: 'uppercase', paddingBottom: 4 }}>
                     {byYear[y].length} paper{byYear[y].length !== 1 ? 's' : ''}
                   </div>
                 </div>
@@ -925,7 +925,7 @@ function PublicationsPage() {
               </div>
             ))}
             {filtered.length === 0 && (
-              <div style={{ padding: 60, textAlign: 'center', color: muted, fontSize: 13,
+              <div style={{ padding: 60, textAlign: 'center', color: muted, fontSize: 17,
                 border: `1px dashed ${line2}`, borderRadius: 12 }}>
                 No publications match these filters.
               </div>
@@ -937,9 +937,9 @@ function PublicationsPage() {
               <a key={p.n} href={p.link} target="_blank" style={{ cursor: 'pointer', display: 'block', minWidth: 0 }}>
                 <JournalCover paper={{ date: `${p.y}.01`, journal: p.journal, cover: p.coverImg || null }} h={220} variant={i % 5}/>
                 <div style={{ marginTop: 10 }}>
-                  <div style={{ fontFamily: mono, fontSize: 10, color: B.accent, marginBottom: 2 }}>№{p.n} · {p.y}</div>
-                  <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: -0.1, lineHeight: 1.3, marginBottom: 3 }}>{p.journal}</div>
-                  <div style={{ fontSize: 11, color: ink2, lineHeight: 1.4,
+                  <div style={{ fontFamily: mono, fontSize: 14, color: B.accent, marginBottom: 2 }}>№{p.n} · {p.y}</div>
+                  <div style={{ fontSize: 16, fontWeight: 600, letterSpacing: -0.1, lineHeight: 1.3, marginBottom: 3 }}>{p.journal}</div>
+                  <div style={{ fontSize: 15, color: ink2, lineHeight: 1.4,
                     display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                     {p.title}
                   </div>
@@ -974,7 +974,7 @@ function PublicationRow({ p }) {
     }}>
       {/* number + IF */}
       <div>
-        <div style={{ fontFamily: mono, fontSize: 20, fontWeight: 600, color: muted,
+        <div style={{ fontFamily: mono, fontSize: 22, fontWeight: 600, color: muted,
           fontVariantNumeric: 'tabular-nums', lineHeight: 1 }}>{p.n}</div>
         {p.IF && (
           <div style={{
@@ -983,7 +983,7 @@ function PublicationRow({ p }) {
             border: `1.5px solid ${ink}`, lineHeight: 1,
           }}>
             <div style={{ fontSize: 8, fontFamily: mono, fontWeight: 700, letterSpacing: 1, color: muted, marginBottom: 3 }}>IF</div>
-            <div style={{ fontSize: 14, fontWeight: 700, color: ink, fontVariantNumeric: 'tabular-nums' }}>
+            <div style={{ fontSize: 18, fontWeight: 700, color: ink, fontVariantNumeric: 'tabular-nums' }}>
               {p.IF}
             </div>
           </div>
@@ -1000,34 +1000,34 @@ function PublicationRow({ p }) {
             {p.hanbitsa && <HanbitsaBadge size="sm" topCited={p.hanbitsa === 'top-cited'}/>}
           </div>
         )}
-        <div style={{ fontSize: 14.5, fontWeight: 500, lineHeight: 1.4, letterSpacing: -0.2,
+        <div style={{ fontSize: 18.5, fontWeight: 500, lineHeight: 1.4, letterSpacing: -0.2,
           color: ink, marginBottom: 6, cursor: 'pointer' }}
           onClick={() => setOpen(o => !o)}>
           {p.title}
         </div>
-        <div style={{ fontSize: 12, color: ink2, lineHeight: 1.55, marginBottom: 8 }}>
+        <div style={{ fontSize: 16, color: ink2, lineHeight: 1.55, marginBottom: 8 }}>
           <AuthorList raw={p.authors}/>
         </div>
         <div>
-          <span style={{ fontFamily: serif, fontSize: 15, fontStyle: 'italic', fontWeight: 600,
+          <span style={{ fontFamily: serif, fontSize: 19, fontStyle: 'italic', fontWeight: 600,
             color: B.accent, letterSpacing: -0.2 }}>{p.journal}</span>
-          {p.vol && <span style={{ fontSize: 12, color: muted, marginLeft: 8 }}>· {p.vol}</span>}
+          {p.vol && <span style={{ fontSize: 16, color: muted, marginLeft: 8 }}>· {p.vol}</span>}
         </div>
         {open && p.cover && (
           <div style={{
             marginTop: 10, padding: '8px 12px', background: bg2, borderRadius: 6,
-            fontSize: 12, color: muted, fontStyle: 'italic',
+            fontSize: 16, color: muted, fontStyle: 'italic',
           }}>★ {p.cover}</div>
         )}
       </div>
 
       {/* actions */}
       <div style={{ textAlign: 'right' }}>
-        <div style={{ fontFamily: mono, fontSize: 11, color: muted, marginBottom: 6 }}>{p.y}</div>
+        <div style={{ fontFamily: mono, fontSize: 15, color: muted, marginBottom: 6 }}>{p.y}</div>
         {p.link && (
           <a href={p.link} target="_blank" style={{
             display: 'inline-block', padding: '5px 10px', borderRadius: 5,
-            border: `1px solid ${line2}`, fontSize: 11, color: ink2, cursor: 'pointer',
+            border: `1px solid ${line2}`, fontSize: 15, color: ink2, cursor: 'pointer',
           }}>Read ↗</a>
         )}
       </div>
@@ -1079,14 +1079,14 @@ function NewsLightbox({ item, onClose }) {
                 position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)',
                 width: 40, height: 40, borderRadius: 999,
                 background: 'rgba(255,255,255,0.18)', border: 'none', cursor: 'pointer',
-                fontSize: 18, color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: 22, color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center',
                 backdropFilter: 'blur(4px)',
               }}>‹</button>
               <button onClick={e => { e.stopPropagation(); next(); }} style={{
                 position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
                 width: 40, height: 40, borderRadius: 999,
                 background: 'rgba(255,255,255,0.18)', border: 'none', cursor: 'pointer',
-                fontSize: 18, color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: 22, color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center',
                 backdropFilter: 'blur(4px)',
               }}>›</button>
 
@@ -1107,7 +1107,7 @@ function NewsLightbox({ item, onClose }) {
               {/* Counter */}
               <div style={{
                 position: 'absolute', top: 10, right: 12,
-                fontFamily: mono, fontSize: 10, letterSpacing: 1,
+                fontFamily: mono, fontSize: 14, letterSpacing: 1,
                 color: 'rgba(255,255,255,0.7)', background: 'rgba(0,0,0,0.3)',
                 padding: '3px 8px', borderRadius: 4,
               }}>{idx + 1} / {imgs.length}</div>
@@ -1119,19 +1119,19 @@ function NewsLightbox({ item, onClose }) {
         <div style={{ padding: '20px 24px', borderTop: hasImages ? `1px solid ${line}` : 'none', flexShrink: 0 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 }}>
             <div style={{ flex: 1 }}>
-              <div style={{ fontFamily: mono, fontSize: 10, letterSpacing: 1.5, color: B.accent,
+              <div style={{ fontFamily: mono, fontSize: 14, letterSpacing: 1.5, color: B.accent,
                 textTransform: 'uppercase', marginBottom: 6 }}>{item.date} · {item.type}</div>
-              {item.title && <div style={{ fontSize: 18, fontWeight: 700, color: ink, marginBottom: 6,
+              {item.title && <div style={{ fontSize: 22, fontWeight: 700, color: ink, marginBottom: 6,
                 letterSpacing: -0.3, lineHeight: 1.3 }}>{item.title}</div>}
-              {item.journal && <div style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 15,
+              {item.journal && <div style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 19,
                 color: B.accent, marginBottom: 4 }}>{item.journal}</div>}
-              {item.meta && <div style={{ fontFamily: mono, fontSize: 11, color: muted, marginBottom: 8 }}>{item.meta}</div>}
-              {item.text && <div style={{ fontSize: 13, color: ink2, lineHeight: 1.6 }}>{item.text}</div>}
+              {item.meta && <div style={{ fontFamily: mono, fontSize: 15, color: muted, marginBottom: 8 }}>{item.meta}</div>}
+              {item.text && <div style={{ fontSize: 17, color: ink2, lineHeight: 1.6 }}>{item.text}</div>}
             </div>
             <button onClick={onClose} style={{
               flexShrink: 0, width: 28, height: 28, borderRadius: 999,
               border: `1px solid ${line2}`, background: bg2, cursor: 'pointer',
-              fontSize: 14, color: muted, display: 'flex', alignItems: 'center',
+              fontSize: 18, color: muted, display: 'flex', alignItems: 'center',
               justifyContent: 'center', fontFamily: 'inherit',
             }}>✕</button>
           </div>
@@ -1139,7 +1139,7 @@ function NewsLightbox({ item, onClose }) {
             <a href={item.link} target="_blank" rel="noopener" style={{
               display: 'inline-block', marginTop: 12,
               padding: '7px 14px', borderRadius: 6,
-              background: ink, color: 'white', fontSize: 12, fontFamily: mono,
+              background: ink, color: 'white', fontSize: 16, fontFamily: mono,
               letterSpacing: 1, textTransform: 'uppercase',
             }}>Read paper →</a>
           )}
@@ -1192,7 +1192,7 @@ function NewsPage() {
     >
       {lightbox && <NewsLightbox item={lightbox} onClose={() => setLightbox(null)}/>}
       {/* Featured card */}
-      <section style={{ padding: '24px 40px 0' }}>
+      <section style={{ padding: '24px 56px 0' }}>
         <div onClick={() => (featured.image || featured.title) && setLightbox(featured)} style={{
           display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 0,
           border: `1px solid ${line}`, borderRadius: 12, overflow: 'hidden',
@@ -1202,7 +1202,7 @@ function NewsPage() {
             <NewsThumb item={featured} h="100%" label={false}/>
           </div>
           <div style={{ padding: '28px 32px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <div style={{ fontFamily: mono, fontSize: 10, letterSpacing: 2, color: B.accent, marginBottom: 10 }}>
+            <div style={{ fontFamily: mono, fontSize: 14, letterSpacing: 2, color: B.accent, marginBottom: 10 }}>
               ── FEATURED · {featured.date}
             </div>
             {featured.title && (
@@ -1220,7 +1220,7 @@ function NewsPage() {
                   <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                     {featured.meta.split(' · ').map((part, j) => (
                       <span key={j} style={{
-                        fontSize: 11, fontFamily: mono, fontWeight: 700,
+                        fontSize: 15, fontFamily: mono, fontWeight: 700,
                         padding: '2px 8px', borderRadius: 4,
                         background: part.startsWith('IF') ? `${B.accent}15` : '#f0f9ff',
                         color: part.startsWith('IF') ? B.accent : '#0369a1',
@@ -1231,15 +1231,15 @@ function NewsPage() {
                 )}
               </div>
             )}
-            <div style={{ fontSize: 14, color: ink2, lineHeight: 1.55, marginBottom: 14 }}>{featured.text}</div>
+            <div style={{ fontSize: 18, color: ink2, lineHeight: 1.55, marginBottom: 14 }}>{featured.text}</div>
             {featured.caption && (
-              <div style={{ fontSize: 13, color: muted, lineHeight: 1.55, fontStyle: 'italic', borderLeft: `2px solid ${B.accent}`, paddingLeft: 12, marginBottom: 14 }}>
+              <div style={{ fontSize: 17, color: muted, lineHeight: 1.55, fontStyle: 'italic', borderLeft: `2px solid ${B.accent}`, paddingLeft: 12, marginBottom: 14 }}>
                 {featured.caption}
               </div>
             )}
             {featured.link && (
               <a href={featured.link} target="_blank" rel="noopener" style={{
-                alignSelf: 'flex-start', fontSize: 12, fontFamily: mono, letterSpacing: 1,
+                alignSelf: 'flex-start', fontSize: 16, fontFamily: mono, letterSpacing: 1,
                 padding: '8px 14px', borderRadius: 6, textDecoration: 'none',
                 background: ink, color: 'white', textTransform: 'uppercase',
               }}>Read paper →</a>
@@ -1248,14 +1248,14 @@ function NewsPage() {
         </div>
       </section>
 
-      <section style={{ padding: '24px 40px 40px' }}>
+      <section style={{ padding: '24px 56px 40px' }}>
         {/* Year filter */}
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 12 }}>
-          <div style={{ fontFamily: mono, fontSize: 10, letterSpacing: 1.5, color: muted,
+          <div style={{ fontFamily: mono, fontSize: 14, letterSpacing: 1.5, color: muted,
             alignSelf: 'center', marginRight: 4, textTransform: 'uppercase' }}>Year</div>
           {years.map(y => (
             <button key={y} onClick={() => setYearFilter(y)} style={{
-              padding: '5px 11px', borderRadius: 5, fontSize: 12,
+              padding: '5px 11px', borderRadius: 5, fontSize: 16,
               border: `1px solid ${yearFilter === y ? B.accent : line2}`,
               background: yearFilter === y ? B.accent : 'white',
               color: yearFilter === y ? 'white' : ink2,
@@ -1272,7 +1272,7 @@ function NewsPage() {
               const count = t === 'All' ? newsFull.length : newsFull.filter(n => n.type === t).length;
               return (
                 <button key={t} onClick={() => setFilter(t)} style={{
-                  padding: '6px 12px', borderRadius: 6, fontSize: 12,
+                  padding: '6px 12px', borderRadius: 6, fontSize: 16,
                   border: `1px solid ${filter === t ? ink : line2}`,
                   background: filter === t ? ink : 'white',
                   color: filter === t ? 'white' : ink2,
@@ -1284,7 +1284,7 @@ function NewsPage() {
           <div style={{ marginLeft: 'auto', display: 'flex', gap: 2, padding: 2, background: bg2, borderRadius: 6, border: `1px solid ${line}` }}>
             {[['timeline','Timeline'],['gallery','Gallery']].map(([v,label]) => (
               <button key={v} onClick={() => setView(v)} style={{
-                padding: '5px 12px', borderRadius: 4, fontSize: 11,
+                padding: '5px 12px', borderRadius: 4, fontSize: 15,
                 background: view === v ? 'white' : 'transparent',
                 boxShadow: view === v ? '0 1px 2px rgba(0,0,0,0.06)' : 'none',
                 border: 'none', color: view === v ? ink : muted, cursor: 'pointer',
@@ -1305,16 +1305,16 @@ function NewsPage() {
                 <div style={{ padding: 14 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8, gap: 8 }}>
                     <span style={{
-                      fontSize: 10, letterSpacing: 1, padding: '2px 7px', borderRadius: 3,
+                      fontSize: 14, letterSpacing: 1, padding: '2px 7px', borderRadius: 3,
                       background: `${typeColor(n.type)}12`, color: typeColor(n.type),
                       fontFamily: mono, textTransform: 'uppercase', whiteSpace: 'nowrap',
                     }}>{n.type}</span>
-                    <span style={{ fontFamily: mono, fontSize: 10, color: muted, whiteSpace: 'nowrap' }}>{n.date}</span>
+                    <span style={{ fontFamily: mono, fontSize: 14, color: muted, whiteSpace: 'nowrap' }}>{n.date}</span>
                   </div>
-                  {n.title && <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 4, letterSpacing: -0.2, lineHeight: 1.3 }}>{n.title}</div>}
-                  {n.journal && <div style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 13, color: ink2, marginBottom: 2 }}>{n.journal}</div>}
-                  {n.meta && <div style={{ fontFamily: mono, fontSize: 10, color: muted, marginBottom: 6 }}>{n.meta}</div>}
-                  {n.text && <div style={{ fontSize: 12, color: ink2, lineHeight: 1.5, marginTop: 4 }}>{n.text}</div>}
+                  {n.title && <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 4, letterSpacing: -0.2, lineHeight: 1.3 }}>{n.title}</div>}
+                  {n.journal && <div style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 17, color: ink2, marginBottom: 2 }}>{n.journal}</div>}
+                  {n.meta && <div style={{ fontFamily: mono, fontSize: 14, color: muted, marginBottom: 6 }}>{n.meta}</div>}
+                  {n.text && <div style={{ fontSize: 16, color: ink2, lineHeight: 1.5, marginTop: 4 }}>{n.text}</div>}
                 </div>
               </div>
             ))}
@@ -1335,18 +1335,18 @@ function NewsPage() {
                   border: `3px solid white`, boxShadow: `0 0 0 1px ${line}`,
                 }} />
                 <div style={{ display: 'grid', gridTemplateColumns: '110px 200px 1fr', gap: 20, alignItems: 'start' }}>
-                  <div style={{ fontFamily: mono, fontSize: 12, color: muted, paddingTop: 4 }}>{n.date}</div>
+                  <div style={{ fontFamily: mono, fontSize: 16, color: muted, paddingTop: 4 }}>{n.date}</div>
                   <div style={{ borderRadius: 8, overflow: 'hidden', border: `1px solid ${line}` }}>
                     <NewsThumb item={n} h={120}/>
                   </div>
                   <div>
-                    <div style={{ display: 'inline-block', fontSize: 10, letterSpacing: 1,
+                    <div style={{ display: 'inline-block', fontSize: 14, letterSpacing: 1,
                       padding: '2px 7px', marginBottom: 8, borderRadius: 3,
                       background: `${typeColor(n.type)}12`, color: typeColor(n.type),
                       fontFamily: mono, textTransform: 'uppercase',
                     }}>{n.type}</div>
                     {n.title && (
-                      <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 6, letterSpacing: -0.3, lineHeight: 1.25 }}>
+                      <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 6, letterSpacing: -0.3, lineHeight: 1.25 }}>
                         {n.title}
                       </div>
                     )}
@@ -1355,14 +1355,14 @@ function NewsPage() {
                         <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 4 }}>
                           <span style={{
                             fontFamily: serif, fontStyle: 'italic', fontWeight: 700,
-                            fontSize: 17, color: B.accent, letterSpacing: -0.2,
+                            fontSize: 21, color: B.accent, letterSpacing: -0.2,
                           }}>{n.journal}</span>
                         </div>
                         {n.meta && (
                           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                             {n.meta.split(' · ').map((part, j) => (
                               <span key={j} style={{
-                                fontSize: 11, fontFamily: mono, fontWeight: 700,
+                                fontSize: 15, fontFamily: mono, fontWeight: 700,
                                 padding: '2px 8px', borderRadius: 4,
                                 background: part.startsWith('IF') ? `${B.accent}15` : '#f0f9ff',
                                 color: part.startsWith('IF') ? B.accent : '#0369a1',
@@ -1373,15 +1373,15 @@ function NewsPage() {
                         )}
                       </div>
                     )}
-                    {n.text && <div style={{ fontSize: 13, color: ink2, lineHeight: 1.6 }}>{n.text}</div>}
+                    {n.text && <div style={{ fontSize: 17, color: ink2, lineHeight: 1.6 }}>{n.text}</div>}
                     {n.caption && (
-                      <div style={{ marginTop: 8, fontSize: 12, color: muted, fontStyle: 'italic', lineHeight: 1.5 }}>
+                      <div style={{ marginTop: 8, fontSize: 16, color: muted, fontStyle: 'italic', lineHeight: 1.5 }}>
                         {n.caption}
                       </div>
                     )}
                     {n.link && (
                       <a href={n.link} target="_blank" rel="noopener" style={{
-                        display: 'inline-block', marginTop: 10, fontSize: 11, fontFamily: mono,
+                        display: 'inline-block', marginTop: 10, fontSize: 15, fontFamily: mono,
                         letterSpacing: 1, color: B.accent, textDecoration: 'none',
                         borderBottom: `1px solid ${B.accent}40`, paddingBottom: 1,
                       }}>Read paper →</a>
@@ -1411,16 +1411,16 @@ function ContactPage() {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40 }}>
           {/* Address */}
           <div>
-            <div style={{ fontFamily: mono, fontSize: 11, letterSpacing: 2, color: B.accent, marginBottom: 10 }}>
+            <div style={{ fontFamily: mono, fontSize: 15, letterSpacing: 2, color: B.accent, marginBottom: 10 }}>
               ── ADDRESS
             </div>
-            <div style={{ fontSize: 14.5, lineHeight: 1.7, color: ink, marginBottom: 20 }}>
+            <div style={{ fontSize: 18.5, lineHeight: 1.7, color: ink, marginBottom: 20 }}>
               Department of Pathophysiology & Preclinical Science<br/>
               College of Pharmacy, Korea University<br/>
               2511 Sejong-ro, Sejong 30019, Republic of Korea<br/>
               <span style={{
                 fontFamily: "'Noto Sans KR', sans-serif", fontWeight: 500,
-                color: muted, fontSize: 13.5,
+                color: muted, fontSize: 17.5,
               }}>
                 세종특별자치시 세종로 2511, 고려대학교 세종캠퍼스 약학대학
               </span>
@@ -1435,13 +1435,13 @@ function ContactPage() {
                   padding: '14px 16px', border: `1px solid ${line}`, borderRadius: 8,
                   display: 'grid', gridTemplateColumns: '90px 1fr', gap: 14, alignItems: 'start',
                 }}>
-                  <div style={{ fontFamily: mono, fontSize: 10, letterSpacing: 1.5,
+                  <div style={{ fontFamily: mono, fontSize: 14, letterSpacing: 1.5,
                     color: B.accent, fontWeight: 700, paddingTop: 2, textTransform: 'uppercase' }}>{label}</div>
                   <div>
-                    <div style={{ fontSize: 13.5, color: ink, lineHeight: 1.45 }}>{en}</div>
+                    <div style={{ fontSize: 17.5, color: ink, lineHeight: 1.45 }}>{en}</div>
                     <div style={{
                       fontFamily: "'Noto Sans KR', sans-serif", fontWeight: 500,
-                      fontSize: 12.5, color: muted, marginTop: 2,
+                      fontSize: 16.5, color: muted, marginTop: 2,
                     }}>{ko}</div>
                   </div>
                 </div>
@@ -1451,7 +1451,7 @@ function ContactPage() {
 
           {/* Contact info + PI card */}
           <div>
-            <div style={{ fontFamily: mono, fontSize: 11, letterSpacing: 2, color: B.accent, marginBottom: 10 }}>
+            <div style={{ fontFamily: mono, fontSize: 15, letterSpacing: 2, color: B.accent, marginBottom: 10 }}>
               ── CONTACT INFO
             </div>
             <div style={{
@@ -1459,28 +1459,28 @@ function ContactPage() {
               background: `linear-gradient(135deg, ${B.accent} 0%, #6b1010 100%)`,
               marginBottom: 16,
             }}>
-              <div style={{ fontFamily: mono, fontSize: 10, letterSpacing: 2, opacity: 0.8, marginBottom: 8 }}>
+              <div style={{ fontFamily: mono, fontSize: 14, letterSpacing: 2, opacity: 0.8, marginBottom: 8 }}>
                 PRINCIPAL INVESTIGATOR
               </div>
               <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: -0.5, lineHeight: 1.2 }}>
                 Hanjun Kim, Ph.D.
               </div>
               <div style={{
-                fontFamily: serif, fontSize: 17, fontStyle: 'italic',
+                fontFamily: serif, fontSize: 21, fontStyle: 'italic',
                 opacity: 0.9, marginBottom: 16,
               }}>김한준 교수</div>
               <a style={{
                 display: 'inline-flex', alignItems: 'center', gap: 8,
                 padding: '10px 14px', background: 'rgba(255,255,255,0.14)',
                 border: '1px solid rgba(255,255,255,0.25)', borderRadius: 8,
-                color: 'white', fontSize: 13.5, fontWeight: 500,
+                color: 'white', fontSize: 17.5, fontWeight: 500,
                 fontFamily: mono, letterSpacing: 0.3,
               }}>
                 <span style={{ opacity: 0.7 }}>✉</span>
                 <span>{email}</span>
               </a>
             </div>
-            <div style={{ fontSize: 11, color: muted, lineHeight: 1.6, padding: '0 2px' }}>
+            <div style={{ fontSize: 15, color: muted, lineHeight: 1.6, padding: '0 2px' }}>
               ⚠ 본 홈페이지에 게시된 이메일 주소가 전자우편 수집 프로그램이나
               그밖의 기술적 장치를 이용하여 무단으로 수집되는 것을 거부합니다.
             </div>
@@ -1489,11 +1489,11 @@ function ContactPage() {
       </section>
 
       {/* ── Opportunities */}
-      <section style={{ padding: '48px 40px', background: '#fafaf8', borderBottom: `1px solid ${line}` }}>
-        <div style={{ maxWidth: 960, margin: '0 auto' }}>
+      <section style={{ padding: '48px 56px', background: '#fafaf8', borderBottom: `1px solid ${line}` }}>
+        <div style={{ maxWidth: 1300, margin: '0 auto' }}>
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 28 }}>
             <div>
-              <div style={{ fontFamily: mono, fontSize: 11, letterSpacing: 2, color: B.accent, marginBottom: 8 }}>
+              <div style={{ fontFamily: mono, fontSize: 15, letterSpacing: 2, color: B.accent, marginBottom: 8 }}>
                 ── OPPORTUNITIES
               </div>
               <h2 style={{ fontSize: 28, fontWeight: 700, letterSpacing: -0.6, margin: '0 0 6px' }}>
@@ -1501,14 +1501,14 @@ function ContactPage() {
               </h2>
               <div style={{
                 fontFamily: "'Noto Sans KR', sans-serif", fontWeight: 500,
-                fontSize: 16, color: muted, letterSpacing: -0.2,
+                fontSize: 20, color: muted, letterSpacing: -0.2,
               }}>
                 함께 연구할 연구원을 찾고 있습니다.
               </div>
             </div>
           </div>
 
-          <p style={{ fontSize: 14.5, lineHeight: 1.7, color: ink2, margin: '0 0 28px', maxWidth: 720 }}>
+          <p style={{ fontSize: 18.5, lineHeight: 1.7, color: ink2, margin: '0 0 28px', maxWidth: 1100 }}>
             We welcome self-motivated and passionate postdocs, graduate students, undergraduate students,
             and visiting scholars/students to join our team. <strong style={{ color: ink }}>We hire the best and train the best.</strong>
           </p>
@@ -1554,16 +1554,16 @@ function ContactPage() {
                 }}>
                   <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 10 }}>
                     <div>
-                      <div style={{ fontSize: 16, fontWeight: 700, letterSpacing: -0.3, color: ink, lineHeight: 1.2 }}>
+                      <div style={{ fontSize: 20, fontWeight: 700, letterSpacing: -0.3, color: ink, lineHeight: 1.2 }}>
                         {o.label}
                       </div>
                       <div style={{
                         fontFamily: "'Noto Sans KR', sans-serif", fontWeight: 500,
-                        fontSize: 12.5, color: muted, marginTop: 2,
+                        fontSize: 16.5, color: muted, marginTop: 2,
                       }}>{o.ko}</div>
                     </div>
                     <span style={{
-                      fontSize: 10, fontFamily: mono, fontWeight: 700, letterSpacing: 0.8,
+                      fontSize: 14, fontFamily: mono, fontWeight: 700, letterSpacing: 0.8,
                       textTransform: 'uppercase', padding: '3px 8px', borderRadius: 3,
                       whiteSpace: 'nowrap', flexShrink: 0,
                       color: isOpen ? '#15803d' : '#6b6b65',
@@ -1573,9 +1573,9 @@ function ContactPage() {
                       {isOpen ? '● Open' : '○ Closed'}
                     </span>
                   </div>
-                  <div style={{ fontSize: 12.5, color: ink2, lineHeight: 1.55 }}>{o.desc}</div>
+                  <div style={{ fontSize: 16.5, color: ink2, lineHeight: 1.55 }}>{o.desc}</div>
                   <div style={{
-                    fontFamily: mono, fontSize: 10, letterSpacing: 1, color: muted,
+                    fontFamily: mono, fontSize: 14, letterSpacing: 1, color: muted,
                     paddingTop: 8, marginTop: 'auto', borderTop: `1px dashed ${line}`,
                   }}>
                     {o.statusLabel}
@@ -1590,7 +1590,7 @@ function ContactPage() {
             border: `1px dashed ${line2}`, borderRadius: 10,
             display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap',
           }}>
-            <div style={{ fontSize: 13.5, color: ink2, lineHeight: 1.55 }}>
+            <div style={{ fontSize: 17.5, color: ink2, lineHeight: 1.55 }}>
               Interested? Send a brief CV and a short note about your research interests —{' '}
               <span style={{ fontFamily: "'Noto Sans KR', sans-serif", fontWeight: 500 }}>
                 간단한 CV와 관심 분야를 이메일로 보내주세요.
@@ -1598,7 +1598,7 @@ function ContactPage() {
             </div>
             <a href={`mailto:${email}?subject=Inquiry%20from%20the%20website`} style={{
               padding: '10px 16px', borderRadius: 8, background: B.accent, color: 'white',
-              fontSize: 13, fontWeight: 600, whiteSpace: 'nowrap',
+              fontSize: 17, fontWeight: 600, whiteSpace: 'nowrap',
             }}>
               Email Dr. Kim →
             </a>

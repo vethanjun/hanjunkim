@@ -40,10 +40,10 @@ function KUMark({ size = 32, color = '#8b1a1a', showText = false }) {
       </svg>
       {showText && (
         <div style={{ lineHeight: 1.1 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 0.5, color: color }}>
+          <div style={{ fontSize: 15, fontWeight: 700, letterSpacing: 0.5, color: color }}>
             KOREA UNIVERSITY
           </div>
-          <div style={{ fontSize: 9, color: color, opacity: 0.7, fontFamily: mono, letterSpacing: 1 }}>
+          <div style={{ fontSize: 13, color: color, opacity: 0.7, fontFamily: mono, letterSpacing: 1 }}>
             고려대학교 · EST. 1905
           </div>
         </div>
@@ -61,9 +61,9 @@ function Nav({ active, onNav }) {
     }}>
       {/* KU university strip */}
       <div style={{
-        padding: '6px 40px', background: B.accent, color: 'white',
+        padding: '6px 56px', background: B.accent, color: 'white',
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        fontSize: 11, fontFamily: mono, letterSpacing: 1,
+        fontSize: 12, fontFamily: mono, letterSpacing: 1,
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <KUMark size={18} color="white"/>
@@ -73,7 +73,7 @@ function Nav({ active, onNav }) {
       </div>
       {/* Main nav */}
       <div style={{
-        padding: '14px 40px', display: 'flex',
+        padding: '14px 56px', display: 'flex',
         justifyContent: 'space-between', alignItems: 'center',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer' }} onClick={() => onNav('Home')}>
@@ -81,26 +81,26 @@ function Nav({ active, onNav }) {
                alt="KU-PPL Logo"
                style={{ height: 44, width: 'auto', objectFit: 'contain', display: 'block' }}/>
           <div>
-            <div style={{ fontWeight: 700, fontSize: 15, letterSpacing: -0.3, color: ink, lineHeight: 1.1 }}>
+            <div style={{ fontWeight: 700, fontSize: 17, letterSpacing: -0.3, color: ink, lineHeight: 1.1 }}>
               Kim Laboratory
             </div>
-            <div style={{ fontSize: 10.5, color: muted, letterSpacing: 0.3, marginTop: 2,
-              display: 'flex', alignItems: 'center', gap: 6 }}>
+            <div style={{ fontSize: 12, color: muted, letterSpacing: 0.3, marginTop: 2,
+              display: 'flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap' }}>
               <span style={{ fontFamily: mono, letterSpacing: 1 }}>KU-PPL</span>
               <span style={{ opacity: 0.4 }}>·</span>
-              <span style={{ fontFamily: "'Noto Sans KR', sans-serif", fontWeight: 500, fontSize: 11 }}>
+              <span style={{ fontFamily: "'Noto Sans KR', sans-serif", fontWeight: 500, fontSize: 12 }}>
                 병태생리학 · 전임상학 연구실
               </span>
             </div>
           </div>
         </div>
-        <nav style={{ display: 'flex', gap: 2, fontSize: 15, fontWeight: 500 }}>
+        <nav style={{ display: 'flex', gap: 2, fontSize: 20, fontWeight: 700 }}>
           {pages.map(t => (
             <a key={t} onClick={() => onNav(t)} style={{
               padding: '8px 16px', borderRadius: 6,
               color: active === t ? ink : ink2,
               background: active === t ? '#f4f5f6' : 'transparent',
-              cursor: 'pointer',
+              cursor: 'pointer', lineHeight: 1.4,
             }}>{t}</a>
           ))}
         </nav>
@@ -113,28 +113,28 @@ function Nav({ active, onNav }) {
 function Footer() {
   return (
     <footer style={{
-      borderTop: `3px solid rgba(255,255,255,0.3)`, padding: '28px 40px 20px',
+      borderTop: `3px solid rgba(255,255,255,0.3)`, padding: '28px 56px 20px',
       background: 'rgb(139, 26, 26)',
-      fontSize: 12.5, color: 'white',
+      fontSize: 16.5, color: 'white',
     }}>      {/* Top row: logo + links */}
-      <div style={{ display: 'grid', gridTemplateColumns: '280px 1fr 1fr 1fr', gap: 40, marginBottom: 20, alignItems: 'start' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '380px 1fr 1fr 1fr', gap: 40, marginBottom: 20, alignItems: 'start' }}>
         <div>
           <div style={{ marginBottom: 14 }}>
             <img src="v2/assets/ku-logo-full.png" alt="Korea University"
                  style={{ height: 72, width: 'auto', objectFit: 'contain', display: 'block' }}/>
           </div>
-          <div style={{ fontWeight: 700, color: 'rgb(255, 255, 255)', marginBottom: 6, fontSize: 14 }}>Kim Laboratory (KU-PPL)</div>
-          <div style={{ lineHeight: 1.6, color: 'rgb(255, 255, 255)', fontSize: 12, opacity: 0.85 }}>
+          <div style={{ fontWeight: 700, color: 'rgb(255, 255, 255)', marginBottom: 6, fontSize: 18 }}>Kim Laboratory (KU-PPL)</div>
+          <div style={{ lineHeight: 1.6, color: 'rgb(255, 255, 255)', fontSize: 16, opacity: 0.85 }}>
             Pathophysiology & Preclinical Science Lab<br/>
             College of Pharmacy, Korea University · Sejong Campus<br/>
             2511 Sejong-ro, Sejong 30019, Republic of Korea
           </div>
         </div>
         <div>
-          <div style={{ fontWeight: 600, color: 'white', marginBottom: 10, fontSize: 11, letterSpacing: 1, fontFamily: mono, textTransform: 'uppercase' }}>Explore</div>
+          <div style={{ fontWeight: 600, color: 'white', marginBottom: 10, fontSize: 15, letterSpacing: 1, fontFamily: mono, textTransform: 'uppercase' }}>Explore</div>
           {['Research','Publications','People','News','Contact'].map(x => (
             <a key={x} onClick={() => window.__kuNavTo && window.__kuNavTo(x)} style={{
-              display: 'block', padding: '4px 0', color: 'rgba(255,255,255,0.8)', fontSize: 13,
+              display: 'block', padding: '4px 0', color: 'rgba(255,255,255,0.8)', fontSize: 17,
               cursor: 'pointer', textDecoration: 'none',
             }}
             onMouseEnter={e => e.currentTarget.style.color = 'white'}
@@ -143,14 +143,14 @@ function Footer() {
           ))}
         </div>
         <div>
-          <div style={{ fontWeight: 600, color: 'white', marginBottom: 10, fontSize: 11, letterSpacing: 1, fontFamily: mono, textTransform: 'uppercase' }}>Connect</div>
+          <div style={{ fontWeight: 600, color: 'white', marginBottom: 10, fontSize: 15, letterSpacing: 1, fontFamily: mono, textTransform: 'uppercase' }}>Connect</div>
           {[
             ['Google Scholar', 'https://scholar.google.co.kr/citations?user=SF56UPQAAAAJ&hl=en'],
             ['ORCID', 'https://orcid.org/0000-0001-9238-7238'],
             ['LinkedIn', 'https://www.linkedin.com/in/hanjun-kim-158162183/'],
           ].map(([label, href]) => (
             <a key={label} href={href} target="_blank" rel="noopener" style={{
-              display: 'block', padding: '4px 0', color: 'rgba(255,255,255,0.8)', fontSize: 13,
+              display: 'block', padding: '4px 0', color: 'rgba(255,255,255,0.8)', fontSize: 17,
               textDecoration: 'none',
             }}
             onMouseEnter={e => e.currentTarget.style.color = 'white'}
@@ -159,8 +159,8 @@ function Footer() {
           ))}
         </div>
         <div>
-          <div style={{ fontWeight: 600, color: 'white', marginBottom: 10, fontSize: 11, letterSpacing: 1, fontFamily: mono, textTransform: 'uppercase' }}>Legal</div>
-          <div style={{ lineHeight: 1.7, fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>
+          <div style={{ fontWeight: 600, color: 'white', marginBottom: 10, fontSize: 15, letterSpacing: 1, fontFamily: mono, textTransform: 'uppercase' }}>Legal</div>
+          <div style={{ lineHeight: 1.7, fontSize: 16, color: 'rgba(255,255,255,0.7)' }}>
             © 2023 Hanjun Kim Lab.<br/>
             이메일 무단수집 거부.
           </div>
@@ -168,9 +168,9 @@ function Footer() {
       </div>
       {/* Bottom divider */}
       <div style={{ borderTop: '1px solid rgba(255,255,255,0.2)', paddingTop: 12,
-        fontFamily: mono, fontSize: 10, letterSpacing: 1, color: 'rgba(255,255,255,0.5)',
+        fontFamily: mono, fontSize: 14, letterSpacing: 1, color: 'rgba(255,255,255,0.5)',
         display: 'flex', justifyContent: 'space-between' }}>
-        <span>KOREA UNIVERSITY · COLLEGE OF PHARMACY · SEJONG CAMPUS</span>
+        <span>KOREA UNIVERSITY · COLLEGE OF PHARMACY</span>
       </div>
     </footer>
   );
@@ -209,7 +209,7 @@ function HeroPlaceholder({ label = 'LAB HERO IMAGE', h = 340 }) {
         position: 'absolute', inset: 0,
         display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center',
-        color: 'rgba(255,255,255,0.7)', fontFamily: mono, fontSize: 11, letterSpacing: 2,
+        color: 'rgba(255,255,255,0.7)', fontFamily: mono, fontSize: 15, letterSpacing: 2,
       }}>
         <div style={{
           width: 40, height: 40, borderRadius: '50%', border: '1.5px dashed rgba(255,255,255,0.4)',
@@ -225,8 +225,8 @@ function HeroPlaceholder({ label = 'LAB HERO IMAGE', h = 340 }) {
 function PageShell({ eyebrow, titleEn, titleKo, intro, children }) {
   return (
     <div>
-      <section style={{ padding: '48px 40px 32px', borderBottom: `1px solid ${line}` }}>
-        <div style={{ fontFamily: mono, fontSize: 11, letterSpacing: 2, color: B.accent, marginBottom: 12, textTransform: 'uppercase' }}>
+      <section style={{ padding: '48px 56px 32px', borderBottom: `1px solid ${line}` }}>
+        <div style={{ fontFamily: mono, fontSize: 15, letterSpacing: 2, color: B.accent, marginBottom: 12, textTransform: 'uppercase' }}>
           {eyebrow}
         </div>
         <h1 style={{ fontSize: 44, fontWeight: 700, letterSpacing: -1.5, lineHeight: 1.05, margin: '0 0 6px' }}>
@@ -235,7 +235,7 @@ function PageShell({ eyebrow, titleEn, titleKo, intro, children }) {
         <div style={{ fontFamily: serif, fontSize: 22, fontStyle: 'italic', color: muted, margin: '0 0 14px' }}>
           {titleKo}
         </div>
-        {intro && <p style={{ fontSize: 15, lineHeight: 1.6, color: ink2, maxWidth: 700, margin: 0 }}>{intro}</p>}
+        {intro && <p style={{ fontSize: 19, lineHeight: 1.6, color: ink2, maxWidth: 1200, margin: 0 }}>{intro}</p>}
       </section>
       {children}
     </div>
@@ -255,7 +255,7 @@ function NewsThumb({ item, w = '100%', h = 180, label = true }) {
         {item.images && item.images.length > 1 && label && (
           <div style={{
             position: 'absolute', bottom: 8, right: 8,
-            fontFamily: mono, fontSize: 9, letterSpacing: 1,
+            fontFamily: mono, fontSize: 13, letterSpacing: 1,
             color: 'white', background: 'rgba(0,0,0,0.5)', padding: '2px 7px', borderRadius: 3,
           }}>1 / {item.images.length} ↗</div>
         )}
@@ -324,7 +324,7 @@ function NewsThumb({ item, w = '100%', h = 180, label = true }) {
       {label && (
         <div style={{
           position: 'absolute', left: 10, top: 10,
-          fontFamily: mono, fontSize: 9, letterSpacing: 1.5,
+          fontFamily: mono, fontSize: 13, letterSpacing: 1.5,
           color: 'white', opacity: 0.85, textTransform: 'uppercase',
           background: 'rgba(0,0,0,0.25)', padding: '3px 7px', borderRadius: 3,
         }}>[ {item.type} · photo ]</div>
@@ -650,7 +650,6 @@ const people = [
   { name: 'Jin Kim', ko: '학부연구생', group: 'ug',
     role: 'Undergraduate Researcher', since: '2026.01',
     affil: 'College of Pharmacy, Korea University',
-    email: 'jinkim0607 at korea.ac.kr',
     photo: 'v2/assets/people-jinkim.jpg',
     tags: [] },
 ];
@@ -790,7 +789,7 @@ function JournalCover({ paper, w = '100%', h = 260, variant }) {
         display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',
       }}>
         <div style={{
-          fontFamily: serif, fontSize: 13, fontStyle: 'italic', fontWeight: 600,
+          fontFamily: serif, fontSize: 17, fontStyle: 'italic', fontWeight: 600,
           lineHeight: 1, letterSpacing: -0.2, color: p.accent,
           textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap',
           maxWidth: '75%',

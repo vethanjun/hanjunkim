@@ -80,7 +80,7 @@ function App() {
   }[page] || HomePage;
 
   return (
-    <div style={{ minHeight: '100vh', background: 'white', maxWidth: 1360, margin: '0 auto', boxShadow: '0 0 0 1px #eef0f2' }}>
+    <div style={{ minHeight: '100vh', background: 'white', maxWidth: 1560, margin: '0 auto', boxShadow: '0 0 0 1px #eef0f2' }}>
       <Nav active={page} onNav={onNav}/>
       <div key={page}>
         <Page onNav={onNav}/>

@@ -1,16 +1,17 @@
 // Home page v2 — B expanded
 
 function HomePage({ onNav }) {
+  const [showAllNews, setShowAllNews] = React.useState(false);
   return (
     <div>
       {/* Hero */}
-      <section style={{ padding: '56px 40px 40px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: 48, alignItems: 'center' }}>
+      <section style={{ padding: '56px 56px 40px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: 48, alignItems: 'center' }}>
           <div>
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
               padding: '4px 10px', border: `1px solid ${line2}`,
-              borderRadius: 999, fontSize: 11, color: ink2, marginBottom: 20,
+              borderRadius: 999, fontSize: 15, color: ink2, marginBottom: 20,
             }}>
               <span style={{ width: 6, height: 6, borderRadius: 999, background: B.accent }} />
               The Kim Laboratory · Est. 2023 · Korea University
@@ -24,32 +25,32 @@ function HomePage({ onNav }) {
                 preclinical science.
               </span>
             </h1>
-            <p style={{ fontSize: 16, lineHeight: 1.65, color: ink2, maxWidth: 560, margin: '0 0 14px' }}>
+            <p style={{ fontSize: 20, lineHeight: 1.65, color: ink2, maxWidth: 560, margin: '0 0 14px' }}>
               At the interface of preclinical science and pathophysiology, we evaluate the efficacy, safety, and mechanism of novel therapeutics in animal disease models — bridging drug discovery and clinical translation for refractory diseases.
             </p>
-            <p style={{ fontFamily: serif, fontSize: 18, fontStyle: 'italic', color: muted, margin: '0 0 28px' }}>
+            <p style={{ fontFamily: serif, fontSize: 22, fontStyle: 'italic', color: muted, margin: '0 0 28px' }}>
               병태생리학 · 전임상학 연구실 (KU-PPL)
             </p>
             <div style={{ display: 'flex', gap: 10 }}>
               <a onClick={() => onNav('Research')} style={{
                 padding: '11px 18px', borderRadius: 8, cursor: 'pointer',
-                background: ink, color: 'white', fontSize: 13, fontWeight: 500,
+                background: ink, color: 'white', fontSize: 17, fontWeight: 500,
               }}>Explore research →</a>
               <a onClick={() => onNav('Publications')} style={{
                 padding: '11px 18px', borderRadius: 8, cursor: 'pointer',
-                border: `1px solid ${line2}`, fontSize: 13, fontWeight: 500, color: ink,
+                border: `1px solid ${line2}`, fontSize: 17, fontWeight: 500, color: ink,
               }}>Read publications</a>
             </div>
           </div>
           <div style={{ borderRadius: 12, overflow: 'hidden', border: `1px solid ${line}` }}>
             <img src="v2/assets/home-hero.jpg" alt="Translational research approach"
-                 style={{ width: '100%', height: 380, objectFit: 'cover', display: 'block' }}/>
+                 style={{ width: '100%', height: 480, objectFit: 'cover', objectPosition: 'center top', display: 'block' }}/>
           </div></div>
       </section>
 
       {/* Metrics strip */}
       <section style={{
-        padding: '24px 40px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0,
+        padding: '24px 56px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0,
         borderTop: `1px solid ${line}`, borderBottom: `1px solid ${line}`, background: bg2,
       }}>
         {[
@@ -67,24 +68,24 @@ function HomePage({ onNav }) {
               color: i === 3 ? B.accent : ink,
               lineHeight: 1, marginBottom: 6, fontVariantNumeric: 'tabular-nums',
             }}>{m.n}</div>
-            <div style={{ fontSize: 12, color: muted }}>{m.label}</div>
-            {m.hint && <div style={{ fontSize: 10, color: B.accent, marginTop: 2, fontFamily: mono }}>⚠ {m.hint}</div>}
+            <div style={{ fontSize: 16, color: muted }}>{m.label}</div>
+            {m.hint && <div style={{ fontSize: 14, color: B.accent, marginTop: 2, fontFamily: mono }}>⚠ {m.hint}</div>}
           </div>
         ))}
       </section>
 
       {/* Research pillars */}
-      <section style={{ padding: '48px 40px', borderBottom: `1px solid ${line}` }}>
+      <section style={{ padding: '48px 56px', borderBottom: `1px solid ${line}` }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 22 }}>
           <div>
-            <div style={{ fontFamily: mono, fontSize: 11, letterSpacing: 2, color: B.accent, marginBottom: 6 }}>
+            <div style={{ fontFamily: mono, fontSize: 15, letterSpacing: 2, color: B.accent, marginBottom: 6 }}>
               ── RESEARCH
             </div>
             <h2 style={{ fontSize: 28, fontWeight: 700, letterSpacing: -0.8, margin: 0 }}>
               Four pillars <span style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 500, color: muted }}>· 연구 분야</span>
             </h2>
           </div>
-          <a onClick={() => onNav('Research')} style={{ fontSize: 13, color: ink2, cursor: 'pointer' }}>View all →</a>
+          <a onClick={() => onNav('Research')} style={{ fontSize: 17, color: ink2, cursor: 'pointer' }}>View all →</a>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
           {pillars.map(p => (
@@ -96,11 +97,11 @@ function HomePage({ onNav }) {
                 width: 36, height: 36, borderRadius: 8,
                 background: `${B.accent}12`, marginBottom: 14,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontFamily: mono, fontSize: 11, color: B.accent, fontWeight: 600,
+                fontFamily: mono, fontSize: 15, color: B.accent, fontWeight: 600,
               }}>{p.id}</div>
-              <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 2, letterSpacing: -0.2 }}>{p.title}</div>
-              <div style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 14, color: muted, marginBottom: 8 }}>{p.ko}</div>
-              <div style={{ fontSize: 12, lineHeight: 1.55, color: ink2 }}>{p.desc}</div>
+              <div style={{ fontSize: 19, fontWeight: 600, marginBottom: 2, letterSpacing: -0.2 }}>{p.title}</div>
+              <div style={{ fontFamily: serif, fontStyle: 'italic', fontSize: 18, color: muted, marginBottom: 8 }}>{p.ko}</div>
+              <div style={{ fontSize: 16, lineHeight: 1.55, color: ink2 }}>{p.desc}</div>
             </div>
           ))}
         </div>
@@ -108,18 +109,18 @@ function HomePage({ onNav }) {
 
       {/* News + Selected publications */}
       <section style={{
-        padding: '48px 40px',
+        padding: '48px 56px',
         display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 40,
       }}>
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 16 }}>
             <div>
-              <div style={{ fontFamily: mono, fontSize: 11, letterSpacing: 2, color: B.accent, marginBottom: 6 }}>
+              <div style={{ fontFamily: mono, fontSize: 15, letterSpacing: 2, color: B.accent, marginBottom: 6 }}>
                 ── SELECTED PUBLICATIONS
               </div>
               <h2 style={{ fontSize: 22, fontWeight: 700, letterSpacing: -0.5, margin: 0 }}>Recent acceptances</h2>
             </div>
-            <a onClick={() => onNav('Publications')} style={{ fontSize: 18, color: ink2, cursor: 'pointer' }}>All publications →</a>
+            <a onClick={() => onNav('Publications')} style={{ fontSize: 22, color: ink2, cursor: 'pointer' }}>All publications →</a>
           </div>
           <div style={{ border: `1px solid ${line}`, borderRadius: 12, overflow: 'hidden' }}>
             {publications.slice(0, 6).map((n,i,arr) => (
@@ -127,15 +128,15 @@ function HomePage({ onNav }) {
                 padding: '14px 16px', display: 'grid',
                 gridTemplateColumns: '78px 1fr auto', gap: 14, alignItems: 'center',
                 borderBottom: i < arr.length - 1 ? `1px solid ${line}` : 'none',
-                fontSize: 13,
+                fontSize: 17,
               }}>
-                <div style={{ fontFamily: mono, fontSize: 11, color: muted }}>№{n.n} · {n.y}</div>
+                <div style={{ fontFamily: mono, fontSize: 15, color: muted }}>№{n.n} · {n.y}</div>
                 <div style={{ minWidth: 0 }}>
                   <span style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 600 }}>{n.journal}</span>
-                  <span style={{ color: muted, display: 'block', fontSize: 12, marginTop: 2,
+                  <span style={{ color: muted, display: 'block', fontSize: 16, marginTop: 2,
                     overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{n.title}</span>
                 </div>
-                <div style={{ fontSize: 11, color: B.accent }}>↗</div>
+                <div style={{ fontSize: 15, color: B.accent }}>↗</div>
               </div>
             ))}
           </div>
@@ -144,15 +145,15 @@ function HomePage({ onNav }) {
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 16 }}>
             <div>
-              <div style={{ fontFamily: mono, fontSize: 11, letterSpacing: 2, color: B.accent, marginBottom: 6 }}>
+              <div style={{ fontFamily: mono, fontSize: 15, letterSpacing: 2, color: B.accent, marginBottom: 6 }}>
                 ── NEWS
               </div>
               <h2 style={{ fontSize: 22, fontWeight: 700, letterSpacing: -0.5, margin: 0 }}>Updates</h2>
             </div>
-            <a onClick={() => onNav('News')} style={{ fontSize: 13, color: ink2, cursor: 'pointer' }}>Archive →</a>
+            <a onClick={() => onNav('News')} style={{ fontSize: 17, color: ink2, cursor: 'pointer' }}>Archive →</a>
           </div>
           <div>
-            {(window.homeNews || []).slice(0, 12).map((n, i) => {
+            {(window.homeNews || []).slice(0, showAllNews ? undefined : 6).map((n, i, arr) => {
               const typeColor = {
                 paper: B.accent, award: B.accent2, promote: '#15803d', member: '#0369a1',
               }[n.type] || ink2;
@@ -160,29 +161,55 @@ function HomePage({ onNav }) {
                 <div key={i} style={{
                   padding: '10px 0', display: 'grid',
                   gridTemplateColumns: '70px 1fr', gap: 10,
-                  borderBottom: i < 11 ? `1px solid ${line}` : 'none',
+                  borderBottom: `1px solid ${line}`,
                   alignItems: 'start',
                 }}>
-                  <div style={{ fontFamily: mono, fontSize: 10, color: muted, paddingTop: 2 }}>{n.date.slice(0,7)}</div>
+                  <div style={{ fontFamily: mono, fontSize: 14, color: muted, paddingTop: 2 }}>{n.date.slice(0,7)}</div>
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 3, flexWrap: 'wrap' }}>
                       <span style={{
-                        fontSize: 9, fontFamily: mono, letterSpacing: 1, textTransform: 'uppercase',
+                        fontSize: 13, fontFamily: mono, letterSpacing: 1, textTransform: 'uppercase',
                         padding: '1px 6px', borderRadius: 3,
                         background: `${typeColor}12`, color: typeColor, flexShrink: 0,
                       }}>{n.type}</span>
                       {n.journal && (
                         <span style={{
                           fontFamily: serif, fontStyle: 'italic', fontWeight: 600,
-                          fontSize: 13.5, color: B.accent, letterSpacing: -0.1,
+                          fontSize: 17.5, color: B.accent, letterSpacing: -0.1,
                         }}>{n.journal}</span>
                       )}
                     </div>
-                    <div style={{ fontSize: 12, lineHeight: 1.45, color: ink2 }}>{n.text}</div>
+                    <div style={{ fontSize: 16, lineHeight: 1.45, color: ink2 }}>{n.text}</div>
                   </div>
                 </div>
               );
             })}
+            {/* 더보기 버튼 */}
+            {!showAllNews && (window.homeNews || []).length > 6 && (
+              <button onClick={() => setShowAllNews(true)} style={{
+                width: '100%', marginTop: 12, padding: '10px 0',
+                border: `1px solid ${line2}`, borderRadius: 8,
+                background: 'white', cursor: 'pointer', fontSize: 14,
+                color: ink2, fontFamily: 'inherit', fontWeight: 500,
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = bg2}
+              onMouseLeave={e => e.currentTarget.style.background = 'white'}
+              >
+                더보기 <span style={{ color: muted, fontSize: 12 }}>({(window.homeNews || []).length - 6}개 더)</span>
+              </button>
+            )}
+            {showAllNews && (
+              <button onClick={() => setShowAllNews(false)} style={{
+                width: '100%', marginTop: 12, padding: '10px 0',
+                border: `1px solid ${line2}`, borderRadius: 8,
+                background: 'white', cursor: 'pointer', fontSize: 14,
+                color: muted, fontFamily: 'inherit', fontWeight: 500,
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = bg2}
+              onMouseLeave={e => e.currentTarget.style.background = 'white'}
+              >접기 ↑</button>
+            )}
           </div>
         </div>
       </section>
