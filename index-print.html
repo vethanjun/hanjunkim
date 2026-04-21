@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Kim Lab · Print</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: white; }
+  body { font-family: 'Inter Tight', system-ui, sans-serif; color: #0f1419;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact; }
+  * { box-sizing: border-box; }
+  button { font-family: inherit; }
+  a { text-decoration: none; color: inherit; }
+
+  /* Stack wrapper — each page section breaks to a new printed page */
+  .print-page {
+    background: white;
+    break-after: page;
+    page-break-after: always;
+  }
+  .print-page:last-child { break-after: auto; page-break-after: auto; }
+
+  /* Avoid splitting cards/figures awkwardly */
+  figure, .no-break, [data-screen-label] section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Hide nav bar in print (each page gets a lighter print header instead) */
+  @media print {
+    .kl-screen-nav { display: none !important; }
+    .kl-screen-footer { display: none !important; }
+    .kl-print-header { display: flex !important; }
+  }
+  .kl-print-header { display: none; }
+
+  @media screen {
+    body { background: #e5e5e3; padding: 20px 0; }
+    .print-page { max-width: 1200px; margin: 0 auto 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  }
+
+  @page {
+    size: A4;
+    margin: 12mm 10mm;
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="v2/shared.jsx"></script>
+<script type="text/babel" src="v2/data-publications.jsx"></script>
+<script type="text/babel" src="v2/home.jsx"></script>
+<script type="text/babel" src="v2/pages.jsx"></script>
+
+<script type="text/babel">
+function PrintHeader({ title, accent }) {
+  return (
+    <div className="kl-print-header" style={{
+      padding: '10px 24px',
+      borderBottom: '2px solid ' + (accent || '#8b1a1a'),
+      marginBottom: 0, display: 'none',
+      alignItems: 'center', justifyContent: 'space-between',
+      fontSize: 11, color: '#6b7684', fontFamily: 'JetBrains Mono, monospace',
+      letterSpacing: 1,
+    }}>
+      <div>
+        <span style={{ color: accent || '#8b1a1a', fontWeight: 700 }}>KU-PPL</span>
+        <span style={{ opacity: 0.4, margin: '0 8px' }}>·</span>
+        <span>Kim Laboratory</span>
+      </div>
+      <div style={{ textTransform: 'uppercase', letterSpacing: 2 }}>── {title}</div>
+    </div>
+  );
+}
+
+function PrintApp() {
+  const pages = [
+    { name: 'Home',          Comp: HomePage },
+    { name: 'Research',      Comp: ResearchPage },
+    { name: 'People',        Comp: PeoplePage },
+    { name: 'Publications',  Comp: PublicationsPage },
+    { name: 'News',          Comp: NewsPage },
+    { name: 'Contact',       Comp: ContactPage },
+  ];
+
+  const noop = () => {};
+  return (
+    <div>
+      {pages.map(({ name, Comp }) => (
+        <section key={name} className="print-page" data-screen-label={name}>
+          <PrintHeader title={name} accent={B.accent}/>
+          <div className="kl-screen-nav-wrapper">
+            <Comp onNav={noop}/>
+          </div>
+        </section>
+      ))}
+    </div>
+  );
+}
+
+// Hide site-wide Nav/Footer in print output by tagging wrappers after mount.
+// Nav/Footer are rendered inside PageShell which is inside each Comp? No —
+// in our app the global Nav/Footer are rendered at App level, not inside pages.
+// PageShell just wraps the page content. So individual pages render without nav.
+// We add the small print header per page for identification.
+
+ReactDOM.createRoot(document.getElementById('root')).render(<PrintApp />);
+</script>
+
+<script>
+// Auto-print once fonts + JSX have loaded. Babel is in-browser so we must wait
+// for scripts to transpile; 1.5s covers that plus a buffer for Font loading.
+(function () {
+  let printed = false;
+  const fire = () => {
+    if (printed) return;
+    printed = true;
+    setTimeout(() => window.print(), 500);
+  };
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => setTimeout(fire, 1200));
+  } else {
+    window.addEventListener('load', () => setTimeout(fire, 1800));
+  }
+})();
+</script>
+</body>
+</html>
