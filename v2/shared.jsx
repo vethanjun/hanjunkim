@@ -18,6 +18,17 @@ const mono = '"JetBrains Mono", "SF Mono", Consolas, monospace';
 
 // ───── KU (Korea University) mark — stylized tiger crest in SVG.
 // Uses crimson by default; can be passed color override for dark backgrounds.
+
+// ───── Responsive hook ─────
+function useWinWidth() {
+  const [w, setW] = React.useState(window.innerWidth);
+  React.useEffect(() => {
+    const fn = () => setW(window.innerWidth);
+    window.addEventListener('resize', fn);
+    return () => window.removeEventListener('resize', fn);
+  }, []);
+  return w;
+}
 function KUMark({ size = 32, color = '#8b1a1a', showText = false }) {
   return (
     <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
@@ -53,6 +64,12 @@ function KUMark({ size = 32, color = '#8b1a1a', showText = false }) {
 }
 function Nav({ active, onNav }) {
   const pages = ['Home','Research','People','Publications','News','Contact'];
+  const w = useWinWidth();
+  const isMobile = w < 900;
+  const [menuOpen, setMenuOpen] = React.useState(false);
+
+  const handleNav = (p) => { onNav(p); setMenuOpen(false); };
+
   return (
     <header style={{
       background: 'white',
@@ -60,71 +77,120 @@ function Nav({ active, onNav }) {
       borderBottom: `1px solid ${line}`,
     }}>
       {/* KU university strip */}
-      <div style={{
-        padding: '6px 56px', background: B.accent, color: 'white',
-        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        fontSize: 12, fontFamily: mono, letterSpacing: 1,
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <KUMark size={18} color="white"/>
-          <span style={{ opacity: 0.9 }}>KOREA UNIVERSITY · COLLEGE OF PHARMACY</span>
-        </div>
-
-      </div>
-      {/* Main nav */}
-      <div style={{
-        padding: '14px 56px', display: 'flex',
-        justifyContent: 'space-between', alignItems: 'center',
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer' }} onClick={() => onNav('Home')}>
-          <img src="v2/assets/ku-logo.gif"
-               alt="KU-PPL Logo"
-               style={{ height: 44, width: 'auto', objectFit: 'contain', display: 'block' }}/>
-          <div>
-            <div style={{ fontWeight: 700, fontSize: 17, letterSpacing: -0.3, color: ink, lineHeight: 1.1 }}>
-              Kim Laboratory
-            </div>
-            <div style={{ fontSize: 12, color: muted, letterSpacing: 0.3, marginTop: 2,
-              display: 'flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap' }}>
-              <span style={{ fontFamily: mono, letterSpacing: 1 }}>KU-PPL</span>
-              <span style={{ opacity: 0.4 }}>·</span>
-              <span style={{ fontFamily: "'Noto Sans KR', sans-serif", fontWeight: 500, fontSize: 12 }}>
-                병태생리학 · 전임상학 연구실
-              </span>
-            </div>
+      {!isMobile && (
+        <div style={{
+          padding: '6px 56px', background: B.accent, color: 'white',
+          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+          fontSize: 12, fontFamily: mono, letterSpacing: 1,
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ opacity: 0.9 }}>KOREA UNIVERSITY · COLLEGE OF PHARMACY</span>
           </div>
         </div>
-        <nav style={{ display: 'flex', gap: 2, fontSize: 20, fontWeight: 700 }}>
+      )}
+      {/* Main nav */}
+      <div style={{
+        padding: isMobile ? '12px 20px' : '14px 56px', display: 'flex',
+        justifyContent: 'space-between', alignItems: 'center',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }} onClick={() => handleNav('Home')}>
+          <img src="v2/assets/ku-logo.gif" alt="KU-PPL Logo"
+               style={{ height: isMobile ? 34 : 44, width: 'auto', objectFit: 'contain', display: 'block' }}/>
+          <div>
+            <div style={{ fontWeight: 700, fontSize: isMobile ? 15 : 17, letterSpacing: -0.3, color: ink, lineHeight: 1.1 }}>
+              Kim Laboratory
+            </div>
+            {!isMobile && (
+              <div style={{ fontSize: 12, color: muted, letterSpacing: 0.3, marginTop: 2,
+                display: 'flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap' }}>
+                <span style={{ fontFamily: mono, letterSpacing: 1 }}>KU-PPL</span>
+                <span style={{ opacity: 0.4 }}>·</span>
+                <span style={{ fontFamily: "'Noto Sans KR', sans-serif", fontWeight: 500, fontSize: 12 }}>
+                  병태생리학 · 전임상학 연구실
+                </span>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {isMobile ? (
+          <button onClick={() => setMenuOpen(o => !o)} style={{
+            background: 'none', border: 'none', cursor: 'pointer', padding: 8,
+            display: 'flex', flexDirection: 'column', gap: 5,
+          }}>
+            {menuOpen ? (
+              <span style={{ fontSize: 22, color: ink, lineHeight: 1 }}>✕</span>
+            ) : (
+              <>
+                <span style={{ width: 24, height: 2, background: ink, display: 'block', borderRadius: 2 }}/>
+                <span style={{ width: 24, height: 2, background: ink, display: 'block', borderRadius: 2 }}/>
+                <span style={{ width: 24, height: 2, background: ink, display: 'block', borderRadius: 2 }}/>
+              </>
+            )}
+          </button>
+        ) : (
+          <nav style={{ display: 'flex', gap: 2, fontSize: 19, fontWeight: 700 }}>
+            {pages.map(t => (
+              <a key={t} onClick={() => handleNav(t)} style={{
+                padding: '8px 16px', borderRadius: 6,
+                color: active === t ? ink : ink2,
+                background: active === t ? '#f4f5f6' : 'transparent',
+                cursor: 'pointer', lineHeight: 1.4,
+              }}>{t}</a>
+            ))}
+          </nav>
+        )}
+      </div>
+
+      {/* Mobile dropdown */}
+      {isMobile && menuOpen && (
+        <nav style={{
+          borderTop: `1px solid ${line}`, background: 'white',
+          padding: '8px 0 16px',
+        }}>
+          <div style={{ padding: '6px 20px 10px', background: B.accent }}>
+            <div style={{ fontSize: 11, fontFamily: mono, letterSpacing: 1, color: 'rgba(255,255,255,0.85)' }}>
+              KOREA UNIVERSITY · COLLEGE OF PHARMACY
+            </div>
+          </div>
           {pages.map(t => (
-            <a key={t} onClick={() => onNav(t)} style={{
-              padding: '8px 16px', borderRadius: 6,
-              color: active === t ? ink : ink2,
-              background: active === t ? '#f4f5f6' : 'transparent',
-              cursor: 'pointer', lineHeight: 1.4,
+            <a key={t} onClick={() => handleNav(t)} style={{
+              display: 'block', padding: '13px 20px',
+              fontSize: 18, fontWeight: active === t ? 700 : 500,
+              color: active === t ? B.accent : ink,
+              borderBottom: `1px solid ${line}`,
+              cursor: 'pointer',
             }}>{t}</a>
           ))}
         </nav>
-      </div>
+      )}
     </header>
   );
 }
 
 // ───── Footer ─────
 function Footer() {
+  const w = useWinWidth();
+  const isMobile = w < 900;
   return (
     <footer style={{
-      borderTop: `3px solid rgba(255,255,255,0.3)`, padding: '28px 56px 20px',
+      borderTop: '3px solid rgba(255,255,255,0.3)',
+      padding: isMobile ? '24px 20px 16px' : '28px 56px 20px',
       background: 'rgb(139, 26, 26)',
       fontSize: 16.5, color: 'white',
-    }}>      {/* Top row: logo + links */}
-      <div style={{ display: 'grid', gridTemplateColumns: '380px 1fr 1fr 1fr', gap: 40, marginBottom: 20, alignItems: 'start' }}>
+    }}>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: isMobile ? '1fr' : '380px 1fr 1fr 1fr',
+        gap: isMobile ? 28 : 40, marginBottom: 20, alignItems: 'start',
+      }}>
         <div>
           <div style={{ marginBottom: 14 }}>
             <img src="v2/assets/ku-logo-full.png" alt="Korea University"
                  style={{ height: 72, width: 'auto', objectFit: 'contain', display: 'block' }}/>
           </div>
-          <div style={{ fontWeight: 700, color: 'rgb(255, 255, 255)', marginBottom: 6, fontSize: 18 }}>Kim Laboratory (KU-PPL)</div>
-          <div style={{ lineHeight: 1.6, color: 'rgb(255, 255, 255)', fontSize: 16, opacity: 0.85 }}>
+          <div style={{ fontWeight: 700, color: 'white', marginBottom: 6, fontSize: 18 }}>Kim Laboratory (KU-PPL)</div>
+          <div style={{ lineHeight: 1.6, color: 'white', fontSize: 16, opacity: 0.85 }}>
             Pathophysiology & Preclinical Science Lab<br/>
             College of Pharmacy, Korea University · Sejong Campus<br/>
             2511 Sejong-ro, Sejong 30019, Republic of Korea
@@ -166,7 +232,6 @@ function Footer() {
           </div>
         </div>
       </div>
-      {/* Bottom divider */}
       <div style={{ borderTop: '1px solid rgba(255,255,255,0.2)', paddingTop: 12,
         fontFamily: mono, fontSize: 14, letterSpacing: 1, color: 'rgba(255,255,255,0.5)',
         display: 'flex', justifyContent: 'space-between' }}>
@@ -223,9 +288,11 @@ function HeroPlaceholder({ label = 'LAB HERO IMAGE', h = 340 }) {
 
 // ───── Page wrapper ─────
 function PageShell({ eyebrow, titleEn, titleKo, intro, children }) {
+  const w = useWinWidth();
+  const isMobile = w < 900;
   return (
     <div>
-      <section style={{ padding: '48px 56px 32px', borderBottom: `1px solid ${line}` }}>
+      <section style={{ padding: isMobile ? '32px 20px 24px' : '48px 56px 32px', borderBottom: `1px solid ${line}` }}>
         <div style={{ fontFamily: mono, fontSize: 15, letterSpacing: 2, color: B.accent, marginBottom: 12, textTransform: 'uppercase' }}>
           {eyebrow}
         </div>

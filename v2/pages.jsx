@@ -1,6 +1,8 @@
 // People, Research, Publications, News, Contact
 
 function ResearchPage() {
+  const w = useWinWidth();
+  const isMobile = w < 900;
   return (
     <PageShell
       eyebrow="── RESEARCH"
@@ -9,8 +11,8 @@ function ResearchPage() {
       intro="Multidisciplinary research bridging pathophysiology, preclinical science, and bioengineering — translating benchtop biomedical innovation into clinical impact."
     >
       {/* Research Summary — with figure */}
-      <section style={{ padding: '48px 56px', borderBottom: `1px solid ${line}` }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: 40, alignItems: 'center' }}>
+      <section style={{ padding: isMobile ? '24px 20px' : '48px 56px', borderBottom: `1px solid ${line}` }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.1fr', gap: isMobile ? 24 : 40, alignItems: 'center' }}>
           <div>
             <div style={{ fontFamily: mono, fontSize: 15, letterSpacing: 2, color: B.accent, marginBottom: 10 }}>
               ── RESEARCH SUMMARY
@@ -42,7 +44,7 @@ function ResearchPage() {
       </section>
 
       {/* Three-track framework with figures */}
-      <section style={{ padding: '48px 56px', borderBottom: `1px solid ${line}`, background: '#fafaf8' }}>
+      <section style={{ padding: isMobile ? '24px 20px' : '48px 56px', borderBottom: `1px solid ${line}`, background: '#fafaf8' }}>
         <div style={{ textAlign: 'center', marginBottom: 36 }}>
           <div style={{ fontFamily: mono, fontSize: 15, letterSpacing: 2, color: B.accent, marginBottom: 8 }}>
             ── THREE COMPLEMENTARY TRACKS
@@ -88,7 +90,7 @@ function ResearchPage() {
               background: 'white', border: `1px solid ${line}`, borderRadius: 14,
               overflow: 'hidden',
             }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 0 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.4fr', gap: 0 }}>
                 <div style={{ padding: 32, position: 'relative' }}>
                   <div style={{
                     position: 'absolute', top: -20, right: -10,
@@ -135,7 +137,7 @@ function ResearchPage() {
       {/* Research Goal */}
       <section style={{ padding: '48px 56px', borderTop: `1px solid ${line}`,
         background: `linear-gradient(135deg, ${B.accent}08 0%, #fafaf8 100%)` }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: 40, alignItems: 'center' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1.1fr 1fr', gap: isMobile ? 24 : 40, alignItems: 'center' }}>
           <figure style={{ margin: 0 }}>
             <div style={{
               border: `1px solid ${line}`, borderRadius: 12, overflow: 'hidden',
@@ -173,6 +175,8 @@ function ResearchPage() {
 }
 
 function PeoplePage() {
+  const w = useWinWidth();
+  const isMobile = w < 900;
   const pi = people.find(p => p.pi);
   const rest = people.filter(p => !p.pi);
   return (
@@ -183,8 +187,8 @@ function PeoplePage() {
       intro={`Currently 8 researchers — one Principal Investigator, graduate students working across biomaterials, drug delivery, tumor therapy, wound healing, and in-vivo modeling.`}
     >
       {/* PI spotlight */}
-      <section style={{ padding: '40px', borderBottom: `1px solid ${line}` }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '280px 1fr', gap: 40, alignItems: 'start' }}>
+      <section style={{ padding: isMobile ? '20px' : '40px', borderBottom: `1px solid ${line}` }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '280px 1fr', gap: isMobile ? 24 : 40, alignItems: 'start' }}>
           <div>
             <div style={{
               width: 280, height: 340, borderRadius: 12,
@@ -364,9 +368,11 @@ function PeoplePage() {
 }
 
 function AlumniSection({ alumni }) {
+  const w = useWinWidth();
+  const isMobile = w < 900;
   const [lightbox, setLightbox] = React.useState(null);
   return (
-    <section style={{ padding: '40px', borderTop: `1px solid ${line}`, background: '#fafaf8' }}>
+    <section style={{ padding: isMobile ? '20px' : '40px', borderTop: `1px solid ${line}`, background: '#fafaf8' }}>
       {lightbox && (
         <div onClick={() => setLightbox(null)} style={{
           position: 'fixed', inset: 0, zIndex: 9999,
@@ -436,9 +442,11 @@ function AlumniSection({ alumni }) {
   );
 }
 function MembersSection({ label, sub, members, detailed }) {
+  const w = useWinWidth();
+  const isMobile = w < 900;
   if (!members || !members.length) return null;
   return (
-    <section style={{ padding: '40px', borderTop: `1px solid ${line}` }}>
+    <section style={{ padding: isMobile ? '20px' : '40px', borderTop: `1px solid ${line}` }}>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 20 }}>
         <div style={{
           fontFamily: mono, fontSize: 15, letterSpacing: 2, color: B.accent, fontWeight: 600,
@@ -720,6 +728,8 @@ function PubBadge({ children, color, bg, solid }) {
 }
 
 function PublicationsPage() {
+  const w = useWinWidth();
+  const isMobile = w < 900;
   const [year, setYear] = React.useState('All');
   const [q, setQ] = React.useState('');
   const [view, setView] = React.useState('list'); // list | covers
@@ -786,7 +796,7 @@ function PublicationsPage() {
       </section>
 
       {/* Cover art wall — real uploaded journal covers, full width */}
-      <section style={{ padding: '56px 56px 40px', background: bg2,
+      <section style={{ padding: isMobile ? '24px 20px' : '56px 56px 40px', background: bg2,
         borderTop: `1px solid ${line}`, borderBottom: `1px solid ${line}` }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 32 }}>
           <div>
@@ -838,7 +848,7 @@ function PublicationsPage() {
       </section>
 
       {/* Filter bar */}
-      <section style={{ padding: '12px 56px 0' }}>
+      <section style={{ padding: isMobile ? '12px 20px 0' : '12px 56px 0' }}>
         <div style={{
           display: 'flex', gap: 14, alignItems: 'center', marginBottom: 20,
           padding: '12px 14px', background: bg2, borderRadius: 12, border: `1px solid ${line}`,
@@ -1150,6 +1160,8 @@ function NewsLightbox({ item, onClose }) {
 }
 
 function NewsPage() {
+  const w = useWinWidth();
+  const isMobile = w < 900;
   const [filter, setFilter] = React.useState('All');
   const [yearFilter, setYearFilter] = React.useState('All');
   const [view, setView] = React.useState('timeline'); // timeline | gallery
@@ -1398,6 +1410,8 @@ function NewsPage() {
 }
 
 function ContactPage() {
+  const w = useWinWidth();
+  const isMobile = w < 900;
   const email = 'hanjun at korea.ac.kr';
   return (
     <PageShell

@@ -2,11 +2,13 @@
 
 function HomePage({ onNav }) {
   const [showAllNews, setShowAllNews] = React.useState(false);
+  const w = useWinWidth();
+  const isMobile = w < 900;
   return (
     <div>
       {/* Hero */}
-      <section style={{ padding: '56px 56px 40px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: 48, alignItems: 'center' }}>
+      <section style={{ padding: isMobile ? '28px 20px 24px' : '56px 56px 40px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.3fr', gap: isMobile ? 24 : 48, alignItems: 'center' }}>
           <div>
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -44,13 +46,13 @@ function HomePage({ onNav }) {
           </div>
           <div style={{ borderRadius: 12, overflow: 'hidden', border: `1px solid ${line}` }}>
             <img src="v2/assets/home-hero.jpg" alt="Translational research approach"
-                 style={{ width: '100%', height: 480, objectFit: 'cover', objectPosition: 'center top', display: 'block' }}/>
+                 style={{ width: '100%', height: 'auto', objectFit: 'contain', display: 'block' }}/>
           </div></div>
       </section>
 
       {/* Metrics strip */}
       <section style={{
-        padding: '24px 56px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0,
+        padding: isMobile ? '16px 20px' : '24px 56px', display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: 0,
         borderTop: `1px solid ${line}`, borderBottom: `1px solid ${line}`, background: bg2,
       }}>
         {[
@@ -75,7 +77,7 @@ function HomePage({ onNav }) {
       </section>
 
       {/* Research pillars */}
-      <section style={{ padding: '48px 56px', borderBottom: `1px solid ${line}` }}>
+      <section style={{ padding: isMobile ? '28px 20px' : '48px 56px', borderBottom: `1px solid ${line}` }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 22 }}>
           <div>
             <div style={{ fontFamily: mono, fontSize: 15, letterSpacing: 2, color: B.accent, marginBottom: 6 }}>
@@ -87,7 +89,7 @@ function HomePage({ onNav }) {
           </div>
           <a onClick={() => onNav('Research')} style={{ fontSize: 17, color: ink2, cursor: 'pointer' }}>View all →</a>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(1, 1fr)' : 'repeat(4, 1fr)', gap: 12 }}>
           {pillars.map(p => (
             <div key={p.id} onClick={() => onNav('Research')} style={{
               padding: 20, border: `1px solid ${line}`, borderRadius: 12,
@@ -109,8 +111,8 @@ function HomePage({ onNav }) {
 
       {/* News + Selected publications */}
       <section style={{
-        padding: '48px 56px',
-        display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 40,
+        padding: isMobile ? '24px 20px' : '48px 56px',
+        display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1.3fr 1fr', gap: isMobile ? 28 : 40,
       }}>
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 16 }}>
