@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Kim Lab · KU-PPL · Korea University</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6VDQ06S8KF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6VDQ06S8KF');
+</script>
 <template id="__bundler_thumbnail" data-bg-color="#8b1a1a">
   <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
     <rect width="1200" height="800" fill="#8b1a1a"/>
@@ -46,6 +54,12 @@ function App() {
   const onNav = (p) => {
     setPage(p);
     try { localStorage.setItem('kimlab-page', p); } catch {}
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'page_view', {
+        page_title: `Kim Lab - ${p}`,
+        page_path: `/${p.toLowerCase()}`,
+      });
+    }
     window.scrollTo({ top: 0 });
     window.__kuNavTo = onNav; // expose for footer links
   };
