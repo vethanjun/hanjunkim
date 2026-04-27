@@ -126,12 +126,15 @@ function HomePage({ onNav }) {
           </div>
           <div style={{ border: `1px solid ${line}`, borderRadius: 12, overflow: 'hidden' }}>
             {publications.slice(0, 6).map((n,i,arr) => (
-              <div key={i} style={{
+              <div key={i} onClick={() => n.link ? window.open(n.link, '_blank') : onNav('Publications')} style={{
                 padding: '14px 16px', display: 'grid',
                 gridTemplateColumns: '78px 1fr auto', gap: 14, alignItems: 'center',
                 borderBottom: i < arr.length - 1 ? `1px solid ${line}` : 'none',
-                fontSize: 17,
-              }}>
+                fontSize: 17, cursor: 'pointer',
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = '#fafaf8'}
+              onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+              >
                 <div style={{ fontFamily: mono, fontSize: 15, color: muted }}>№{n.n} · {n.y}</div>
                 <div style={{ minWidth: 0 }}>
                   <span style={{ fontFamily: serif, fontStyle: 'italic', fontWeight: 600 }}>{n.journal}</span>
