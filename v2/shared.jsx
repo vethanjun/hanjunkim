@@ -1,5 +1,11 @@
 // Shared components & data for B-expansion. Lives under window.*
 
+// Asset path helper — uses pre-computed root set in index.html
+function asset(path) {
+  return (window.__assetRoot || '/') + path;
+}
+window.asset = asset;
+
 const B = /*EDITMODE-BEGIN*/{
   "accent": "#8b1a1a",
   "accent2": "#b8860b"
@@ -94,7 +100,7 @@ function Nav({ active, onNav }) {
         justifyContent: 'space-between', alignItems: 'center',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }} onClick={() => handleNav('Home')}>
-          <img src="v2/assets/ku-logo.gif" alt="KU-PPL Logo"
+          <img src={asset('v2/assets/ku-logo.gif')} alt="KU-PPL Logo"
                style={{ height: isMobile ? 34 : 44, width: 'auto', objectFit: 'contain', display: 'block' }}/>
           <div>
             <div style={{ fontWeight: 700, fontSize: isMobile ? 15 : 17, letterSpacing: -0.3, color: ink, lineHeight: 1.1 }}>
@@ -186,7 +192,7 @@ function Footer() {
       }}>
         <div>
           <div style={{ marginBottom: 14 }}>
-            <img src="v2/assets/ku-logo-full.png" alt="Korea University"
+            <img src={asset('v2/assets/ku-logo-full.png')} alt="Korea University"
                  style={{ height: 72, width: 'auto', objectFit: 'contain', display: 'block' }}/>
           </div>
           <div style={{ fontWeight: 700, color: 'white', marginBottom: 6, fontSize: 18 }}>Kim Laboratory (KU-PPL)</div>
@@ -317,7 +323,7 @@ function NewsThumb({ item, w = '100%', h = 180, label = true }) {
   if (imgSrc) {
     return (
       <div style={{ width: w, height: h, overflow: 'hidden', position: 'relative', background: '#0a0e14' }}>
-        <img src={imgSrc} alt={item.text || item.journal}
+        <img src={asset(imgSrc)} alt={item.text || item.journal}
              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}/>
         {item.images && item.images.length > 1 && label && (
           <div style={{
@@ -428,7 +434,8 @@ const newsFull = [
     text: '고려대학교 약학대학 첨단융합신약학과 학과장 (2025.11 – 2027.02)',
     image: 'v2/assets/news-20251101.png' },
   { date: '2025.10.28', type: 'event', title: '대학원 연구페스타(KU-PPL)',
-    text: '2025 고려대학교 대학원 연구페스타 — 연구 현장 투어' },
+    text: '2025 고려대학교 대학원 연구페스타 — 연구 현장 투어',
+    images: ['v2/assets/news-20251028-1.jpg', 'v2/assets/news-20251028-2.jpg', 'v2/assets/news-20251028-3.jpg', 'v2/assets/news-20251028-4.jpg'] },
   { date: '2025.10.02', type: 'paper', title: '한빛사 논문 선정 (20th)',
     journal: 'Advanced Healthcare Materials', meta: 'IF 9.6 · JCR 8.5%',
     text: 'Geometry-Guided Osteogenesis in Bone-on-a-Chip Systems Using Triply Periodic Minimal Surface Scaffolds',
@@ -472,7 +479,8 @@ const newsFull = [
     text: 'Thanks to the Lab members — Tuya, 민석, 원준, 수진, 민진, 민영, 진솔, 영재 !!',
     images: ['v2/assets/news-20250409-1.jpg', 'v2/assets/news-20250409-2.jpg', 'v2/assets/news-20250409-3.jpg'] },
   { date: '2025.04.03', type: 'press', title: 'SusMat research featured in the Press',
-    text: '부산대 이형우 교수·성균관대 전일 교수·고려대 김한준 교수 공동 교신, 부산대 우채영 박사후연구원과 성균관대 이일현 박사과정생 공동 제1저자. 과기정통부, 한국연구재단, 정보통신기획평가원 지원.' },
+    text: '부산대 이형우 교수·성균관대 전일 교수·고려대 김한준 교수 공동 교신, 부산대 우채영 박사후연구원과 성균관대 이일현 박사과정생 공동 제1저자. 과기정통부, 한국연구재단, 정보통신기획평가원 지원.',
+    images: ['v2/assets/news-20250403-1.jpg', 'v2/assets/news-20250403-2.jpg'] },
   { date: '2025.03.13', type: 'event', title: 'KU-PPL Lab Lunch',
     image: 'v2/assets/news-20250313.jpg' },
   { date: '2025.02.27', type: 'milestone', title: 'Paper Citation > 5K',
@@ -488,8 +496,7 @@ const newsFull = [
     image: 'v2/assets/news-20241206.jpg' },
   { date: '2024.11.21', type: 'award', title: '한국생체재료학회 나이벡 미래과학자상 수상 & 추계 학술대회 참석',
     text: '나이벡 미래과학자상은 생체재료 분야에서 혁신적인 연구 성과를 거둔 젊은 과학자들에게 수여되는 상으로, ㈜나이벡 후원·한국생체재료학회 주최 Young Scientist Exchange Program(YSEP)의 일환으로 한·중·일 세션에서 발표 기회가 주어집니다.',
-    image: 'v2/assets/news-20241121.jpg',
-    images: ['v2/assets/news-20241121.jpg', 'v2/assets/news-20241121-extra.jpg'] },
+    images: ['v2/assets/news-20241121-1.jpg', 'v2/assets/news-20241121-2.jpg'] },
   { date: '2024.10.04', type: 'paper', title: '한빛사 논문 선정 (16th)',
     journal: 'Advanced Healthcare Materials', meta: 'IF 10.0 · JCR 7.8%',
     text: 'Pseudo-3D Topological Alignments Regulate Mechanotransduction and Maturation of Smooth Muscle Cells',
@@ -751,7 +758,7 @@ function JournalCover({ paper, w = '100%', h = 260, variant }) {
   if (paper.cover && !imgFailed) {
     return (
       <div style={{ width: w, height: h, overflow: 'hidden', background: '#0a0e14', borderRadius: 4 }}>
-        <img src={paper.cover} alt={paper.journal}
+        <img src={asset(paper.cover)} alt={paper.journal}
              onError={() => setImgFailed(true)}
              style={{ width: '100%', height: '100%', objectFit: 'cover' }}/>
       </div>

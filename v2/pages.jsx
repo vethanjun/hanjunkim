@@ -33,7 +33,7 @@ function ResearchPage() {
               border: `1px solid ${line}`, borderRadius: 12, overflow: 'hidden',
               background: 'white', padding: 14,
             }}>
-              <img src="v2/assets/research-summary.png" alt="Research summary schematic"
+              <img src={asset('v2/assets/research-summary.png')} alt="Research summary schematic"
                    style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 4 }}/>
             </div>
             <figcaption style={{ fontFamily: mono, fontSize: 14, color: muted, marginTop: 8, letterSpacing: 0.5 }}>
@@ -122,7 +122,7 @@ function ResearchPage() {
                 </div>
                 <div style={{ borderLeft: `1px solid ${line}`, background: '#fafaf8',
                   padding: 20, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <img src={t.img} alt={t.en}
+                  <img src={asset(t.img)} alt={t.en}
                        style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 6 }}/>
                   <div style={{ fontFamily: mono, fontSize: 16, color: muted, marginTop: 10, letterSpacing: 0.3 }}>
                     {t.caption}
@@ -143,7 +143,7 @@ function ResearchPage() {
               border: `1px solid ${line}`, borderRadius: 12, overflow: 'hidden',
               background: 'white', padding: 14,
             }}>
-              <img src="v2/assets/research-goal.png" alt="Translational bioconvergent solutions"
+              <img src={asset('v2/assets/research-goal.png')} alt="Translational bioconvergent solutions"
                    style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 4 }}/>
             </div>
             <figcaption style={{ fontFamily: mono, fontSize: 14, color: muted, marginTop: 8, letterSpacing: 0.5 }}>
@@ -197,7 +197,7 @@ function PeoplePage() {
               background: '#0a0e14',
             }}>
               <img
-                src={pi.photo || 'v2/assets/people-hanjunkim.jpg'}
+                src={asset(pi.photo || 'v2/assets/people-hanjunkim.jpg')}
                 alt="Hanjun Kim, Ph.D. — Principal Investigator"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectFit: 'cover', display: 'block' }}
               />
@@ -384,7 +384,7 @@ function AlumniSection({ alumni }) {
             maxWidth: 360, width: '100%',
             boxShadow: '0 24px 80px rgba(0,0,0,0.4)',
           }}>
-            <img src={lightbox.photo} alt={lightbox.name}
+            <img src={asset(lightbox.photo)} alt={lightbox.name}
               style={{ width: '100%', height: 420, objectFit: 'cover', objectPosition: 'top', display: 'block' }}/>
             <div style={{ padding: '16px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
@@ -422,7 +422,7 @@ function AlumniSection({ alumni }) {
             <div style={{ width: 40, height: 40, borderRadius: 999, flexShrink: 0, overflow: 'hidden',
               background: '#f2efe8', border: `1px solid ${line}` }}>
               {a.photo ? (
-                <img src={a.photo} alt={a.name}
+                <img src={asset(a.photo)} alt={a.name}
                      style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }}/>
               ) : (
                 <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -484,7 +484,7 @@ function MemberCard({ m, detailed }) {
         position: 'relative', overflow: 'hidden',
       }}>
         {m.photo ? (
-          <img src={m.photo} alt={m.name}
+          <img src={asset(m.photo)} alt={m.name}
                style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block', background: '#f4f0e6' }}/>
         ) : (
           <div style={{
@@ -733,18 +733,25 @@ function PublicationsPage() {
   const [year, setYear] = React.useState('All');
   const [q, setQ] = React.useState('');
   const [view, setView] = React.useState('list'); // list | covers
-  const [roleFilter, setRoleFilter] = React.useState('All'); // All | first | corr | cover
+  const [roleFilters, setRoleFilters] = React.useState([]); // multi-select
 
   const all = window.publications || [];
   const years = ['All', ...Array.from(new Set(all.map(p => String(p.y)))).sort().reverse()];
 
+  const toggleRole = (k) => {
+    if (k === 'All') { setRoleFilters([]); return; }
+    setRoleFilters(prev => prev.includes(k) ? prev.filter(x => x !== k) : [...prev, k]);
+  };
+
   const matchesRole = (p) => {
-    if (roleFilter === 'All') return true;
-    if (roleFilter === 'first') return p.first || p.cofirst;
-    if (roleFilter === 'corr') return p.corr;
-    if (roleFilter === 'cover') return !!p.cover;
-    if (roleFilter === 'hanbitsa') return !!p.hanbitsa;
-    return true;
+    if (roleFilters.length === 0) return true;
+    return roleFilters.every(r => {
+      if (r === 'first') return p.first || p.cofirst;
+      if (r === 'corr') return p.corr;
+      if (r === 'cover') return !!p.cover;
+      if (r === 'hanbitsa') return !!p.hanbitsa;
+      return true;
+    });
   };
 
   const filtered = all.filter(p =>
@@ -827,7 +834,7 @@ function PublicationsPage() {
               <div style={{ aspectRatio: '3 / 4', overflow: 'hidden', background: '#f0ece4',
                 borderRadius: 3, boxShadow: '0 2px 12px rgba(40,30,20,0.12), 0 1px 3px rgba(40,30,20,0.08)',
                 border: `1px solid ${line}` }}>
-                <img src={p.coverImg} alt={p.cover}
+                <img src={asset(p.coverImg)} alt={p.cover}
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}/>
               </div>
               <div style={{ marginTop: 10 }}>
@@ -871,16 +878,19 @@ function PublicationsPage() {
           <div style={{ width: 1, height: 20, background: line2, margin: '0 4px' }}/>
 
           <div style={{ fontSize: 15, color: muted, fontFamily: mono, letterSpacing: 1 }}>ROLE</div>
-          <div style={{ display: 'flex', gap: 3 }}>
-            {[['All','All'],['corr','Corresponding *'],['first','First / co-first'],['cover','Cover art'],['hanbitsa','🇰🇷 한빛사']].map(([k,label]) => (
-              <button key={k} onClick={() => setRoleFilter(k)} style={{
-                padding: '5px 10px', borderRadius: 5, fontSize: 16,
-                border: `1px solid ${roleFilter === k ? ink : line2}`,
-                background: roleFilter === k ? ink : 'white',
-                color: roleFilter === k ? 'white' : ink2,
-                cursor: 'pointer', fontFamily: 'inherit',
-              }}>{label}</button>
-            ))}
+          <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
+            {[['All','All'],['corr','Corresponding *'],['first','First / co-first'],['cover','Cover art'],['hanbitsa','🇰🇷 한빛사']].map(([k,label]) => {
+              const isActive = k === 'All' ? roleFilters.length === 0 : roleFilters.includes(k);
+              return (
+                <button key={k} onClick={() => toggleRole(k)} style={{
+                  padding: '5px 10px', borderRadius: 5, fontSize: 16,
+                  border: `1px solid ${isActive ? ink : line2}`,
+                  background: isActive ? ink : 'white',
+                  color: isActive ? 'white' : ink2,
+                  cursor: 'pointer', fontFamily: 'inherit',
+                }}>{label}</button>
+              );
+            })}
           </div>
 
           <input value={q} onChange={e => setQ(e.target.value)} placeholder="Search title, author, journal…"
@@ -907,7 +917,7 @@ function PublicationsPage() {
         <div style={{ fontSize: 16, color: muted, marginBottom: 14 }}>
           Showing {filtered.length} of {all.length} papers
           {year !== 'All' && <> · year {year}</>}
-          {roleFilter !== 'All' && <> · role: {roleFilter}</>}
+          {roleFilters.length > 0 && <> · role: {roleFilters.join(' + ')}</>}
           {q && <> · "{q}"</>}
           <span style={{ marginLeft: 16, fontFamily: mono, fontSize: 14 }}>
             <span style={{ color: ink, fontWeight: 700 }}>Kim HJ</span> = PI ·{' '}

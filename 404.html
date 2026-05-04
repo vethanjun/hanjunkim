@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Kim Lab · KU-PPL · Korea University</title>
+<script>
+  // GitHub Pages SPA routing trick:
+  // Save the full path to sessionStorage, then redirect to index.html
+  var path = window.location.pathname;
+  sessionStorage.setItem('kimlab-redirect-path', path);
+  window.location.replace('/');
+</script>
+</head>
+<body></body>
+</html>

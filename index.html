@@ -67,6 +67,23 @@
   });
 </script>
 
+<script>
+  // Pre-compute asset root once at page load
+  (function() {
+    var loc = window.location;
+    if (loc.hostname === 'hanjunkim.co.kr' || loc.hostname === 'www.hanjunkim.co.kr') {
+      window.__assetRoot = '/';
+    } else {
+      // Preview: derive base from current URL path up to the last '/'
+      // e.g. https://....claudeusercontent.com/v1/design/.../serve/ 
+      var path = loc.href;
+      // Find 'serve/' in the URL
+      var m = path.match(/^(.*\/serve\/)/);
+      window.__assetRoot = m ? m[1] : (loc.origin + '/');
+    }
+  })();
+</script>
+
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
@@ -78,23 +95,47 @@
 
 <script type="text/babel">
 function App() {
-  const [page, setPage] = React.useState('Home');
+  // URL-based routing: /home, /research, /people, /publications, /news, /contact
+  const pathToPage = {
+    '': 'Home', 'home': 'Home', 'research': 'Research', 'people': 'People',
+    'publications': 'Publications', 'news': 'News', 'contact': 'Contact',
+  };
+  // Handle GitHub Pages 404 redirect
+  const getPageFromPath = () => {
+    const redirect = sessionStorage.getItem('kimlab-redirect-path');
+    if (redirect) {
+      sessionStorage.removeItem('kimlab-redirect-path');
+      window.history.replaceState(null, '', redirect);
+    }
+    const path = window.location.pathname.replace(/^\//, '').toLowerCase().split('/')[0];
+    return pathToPage[path] || 'Home';
+  };
+
+  const [page, setPage] = React.useState(getPageFromPath());
   const [tweaksOn, setTweaksOn] = React.useState(false);
   const [accent, setAccent] = React.useState(B.accent);
 
   const onNav = (p) => {
     setPage(p);
-    try { localStorage.setItem('kimlab-page', p); } catch {}
+    const slug = p.toLowerCase();
+    window.history.pushState({page: p}, '', '/' + (slug === 'home' ? '' : slug));
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'page_view', {
         page_title: `Kim Lab - ${p}`,
-        page_path: `/${p.toLowerCase()}`,
+        page_path: `/${slug}`,
       });
     }
     window.scrollTo({ top: 0 });
-    window.__kuNavTo = onNav; // expose for footer links
+    window.__kuNavTo = onNav;
   };
-  React.useEffect(() => { window.__kuNavTo = onNav; }, []);
+
+  // Handle browser back/forward
+  React.useEffect(() => {
+    window.__kuNavTo = onNav;
+    const onPop = () => setPage(getPageFromPath());
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
 
   // Live-apply accent to window.B
   React.useEffect(() => { B.accent = accent; }, [accent]);

@@ -45,7 +45,7 @@ function HomePage({ onNav }) {
             </div>
           </div>
           <div style={{ borderRadius: 12, overflow: 'hidden', border: `1px solid ${line}` }}>
-            <img src="v2/assets/home-hero.jpg" alt="Translational research approach"
+            <img src={asset('v2/assets/home-hero.jpg')} alt="Translational research approach"
                  style={{ width: '100%', height: 'auto', objectFit: 'contain', display: 'block' }}/>
           </div></div>
       </section>
@@ -160,7 +160,7 @@ function HomePage({ onNav }) {
           <div>
             {(window.homeNews || []).slice(0, showAllNews ? undefined : 6).map((n, i, arr) => {
               const typeColor = {
-                paper: B.accent, award: B.accent2, promote: '#15803d', member: '#0369a1',
+                paper: B.accent, award: B.accent2, promote: '#15803d', member: '#0369a1', patent: '#7c3aed', grant: '#b45309',
               }[n.type] || ink2;
               return (
                 <div key={i} style={{
@@ -264,5 +264,31 @@ const homeNews = [
   { date: '2024.03.01', type: 'member', text: 'Hyorin, Yunjin, Yeonggyeong joined our lab. Welcome!!' },
   { date: '2024.02.22', type: 'award', text: '2023 고려대학교 세종캠퍼스 석탑연구상 (학술논문 부문) 수상' },
   { date: '2024.01.01', type: 'promote', text: 'Prof. Kim joined KTERMS Young Investigator Committee as executive member' },
+  { date: '2023.12.23', type: 'paper', journal: 'Journal of Controlled Release', text: 'Research article accepted' },
+  { date: '2023.12.01', type: 'member', text: 'Wonjun, Minseok, and Yurim joined our lab. Welcome!!' },
+  { date: '2023.11.11', type: 'paper', journal: 'Advanced Drug Delivery Reviews', text: 'Review article accepted' },
+  { date: '2023.11.05', type: 'paper', journal: 'Aggregate', text: 'Research article accepted' },
+  { date: '2023.11.01', type: 'award', text: '2023 1학기 고려대학교 석탑강의상 수상 (동물용의약품학 · 상위 5%)' },
+  { date: '2023.10.25', type: 'paper', journal: 'Acta Biomaterialia', text: 'Research article accepted' },
+  { date: '2023.10.23', type: 'paper', journal: 'Journal of Physics: Materials', text: 'Roadmap article accepted' },
+  { date: '2023.10.05', type: 'patent', text: 'US patent "Dopa modified gelatin for wound healing" published' },
+  { date: '2023.09.18', type: 'paper', journal: 'Advanced Functional Materials', text: 'Research article accepted' },
+  { date: '2023.09.01', type: 'member', text: 'Ulziituya and Minjin joined our lab. Welcome!!' },
+  { date: '2023.08.25', type: 'paper', journal: 'Advanced Functional Materials', text: 'Research article accepted' },
+  { date: '2023.08.14', type: 'member', text: 'Soojin joined our lab. Welcome!!' },
+  { date: '2023.08.03', type: 'paper', journal: 'Macromolecular Bioscience', text: 'Research article accepted' },
+  { date: '2023.07.03', type: 'member', text: 'Yeonggyeong and Sungsoo joined our lab. Welcome!!' },
+  { date: '2023.06.20', type: 'paper', journal: 'Biofabrication', text: 'Research article accepted' },
+  { date: '2023.06.15', type: 'paper', journal: 'Biofabrication', text: 'Research article accepted' },
+  { date: '2023.06.06', type: 'paper', journal: 'Advanced Healthcare Materials', text: 'Research article accepted' },
+  { date: '2023.05.22', type: 'paper', journal: 'Advanced Healthcare Materials', text: 'Review article accepted' },
+  { date: '2023.05.05', type: 'paper', journal: 'Advanced Science', text: 'Research article accepted' },
+  { date: '2023.04.06', type: 'patent', text: 'Two World patents "Injectable shear-thinning hydrogel for tumor therapy" published' },
+  { date: '2023.03.30', type: 'patent', text: 'Two US patents "Injectable shear-thinning hydrogel for tumor therapy" published' },
+  { date: '2023.03.29', type: 'paper', journal: 'Advanced Science', text: 'Review article accepted' },
+  { date: '2023.03.25', type: 'promote', text: 'Prof. Kim appointed as Adjunct Professor at Vellore Institute of Technology (India)' },
+  { date: '2023.03.15', type: 'paper', journal: 'Biomaterials', text: 'Review article published online' },
+  { date: '2023.02.15', type: 'paper', journal: 'Bioactive Materials', text: 'Research article published online' },
+  { date: '2023.01.15', type: 'promote', text: 'The Hanjun Kim Lab is now open & hiring!' },
 ];
 Object.assign(window, { homeNews });
