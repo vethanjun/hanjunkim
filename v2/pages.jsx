@@ -745,13 +745,21 @@ function PublicationsPage() {
 
   const matchesRole = (p) => {
     if (roleFilters.length === 0) return true;
-    return roleFilters.every(r => {
+    // corr + first/cofirst = OR (mutually exclusive roles)
+    // cover + hanbitsa = AND with role filters
+    const roleOr = roleFilters.filter(r => r === 'corr' || r === 'first');
+    const roleAnd = roleFilters.filter(r => r === 'cover' || r === 'hanbitsa');
+    const passOr = roleOr.length === 0 || roleOr.some(r => {
       if (r === 'first') return p.first || p.cofirst;
       if (r === 'corr') return p.corr;
+      return true;
+    });
+    const passAnd = roleAnd.every(r => {
       if (r === 'cover') return !!p.cover;
       if (r === 'hanbitsa') return !!p.hanbitsa;
       return true;
     });
+    return passOr && passAnd;
   };
 
   const filtered = all.filter(p =>
