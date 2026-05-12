@@ -410,6 +410,12 @@ function NewsThumb({ item, w = '100%', h = 180, label = true }) {
 // Mirrors the full content of https://www.hanjunkim.co.kr/news — every item the PI lists there.
 // `image` field = URL (png/jpg). When absent, NewsThumb generates a themed placeholder.
 const newsFull = [
+  { date: '2026.05.12', type: 'paper', title: '한빛사 논문 선정 (23rd)',
+    journal: 'Materials Today Bio', meta: 'IF 10.2 · JCR 6.9%',
+    text: 'Cyclic mechanical stretch suppresses intrinsic apoptosis in high metastatic melanoma',
+    link: 'https://doi.org/10.1016/j.mtbio.2026.103132',
+    featured: true, caption: '23번째 한빛사 논문 선정 — KU-PPL 연구실의 가장 최근 성과.',
+    image: 'v2/assets/news-20260512.png' },
   { date: '2026.04.11', type: 'event', title: 'Birthday Celebration for Prof. Kim',
     text: 'Thanks to the Lab members!',
     images: ['v2/assets/news-20260411-1.jpg', 'v2/assets/news-20260411-2.jpg'] },
@@ -417,7 +423,6 @@ const newsFull = [
     journal: 'Advanced Science', meta: 'IF 14.1 · JCR 7.1%',
     text: 'Bidirectional Mechanical Stimulation Enables Biomechanical Coupling and Functional Maturation in Arterial Microphysiological Systems',
     link: 'https://advanced.onlinelibrary.wiley.com/doi/10.1002/advs.202516602',
-    featured: true, caption: '22번째 한빛사 논문 선정 — KU-PPL 연구실의 가장 최근 성과.',
     image: 'v2/assets/news-20260303.png' },
   { date: '2026.01.07', type: 'paper', title: '한빛사 논문 선정 (21st)',
     journal: 'Advanced Healthcare Materials', meta: 'IF 9.6 · JCR 8.5%',
@@ -726,6 +731,15 @@ const people = [
     affil: 'College of Pharmacy, Korea University',
     photo: 'v2/assets/people-jinkim.jpg',
     tags: [] },
+  { name: 'Linna Teng', ko: '학부연구생', group: 'ug',
+    role: 'Undergraduate Researcher', since: '2025.03',
+    affil: 'College of Pharmacy, Korea University',
+    photo: 'v2/assets/alumni-linna.jpg',
+    tags: [] },
+  { name: 'Yunseong Lee', ko: '학부연구생', group: 'ug',
+    role: 'Undergraduate Researcher', since: '2026.03',
+    affil: 'College of Pharmacy, Korea University',
+    tags: [] },
 ];
 
 // ───── Alumni (졸업·수료) ─────
@@ -750,8 +764,30 @@ const alumni = [
   { name: 'Sungsoo Han',       role: 'Undergraduate Intern', period: '2023.07 – 2023.12', photo: 'v2/assets/alumni-sungsoo.jpg', affil: 'College of Pharmacy, Korea University' },
 ];
 
+// ───── Topic detection: pick illustration & palette from paper title keywords.
+function detectPaperTopic(title = '', journal = '') {
+  const t = (title + ' ' + journal).toLowerCase();
+  // Order matters — most specific first
+  if (/microneedle|micro-needle/.test(t))           return 'microneedle';
+  if (/organ.on.a.chip|on.a.chip|microfluid|lab.on.a.chip/.test(t)) return 'chip';
+  if (/bioprint|3d.print|bioink|scaffold|porous|aerogel/.test(t))  return 'scaffold';
+  if (/vascul|angiogen|vessel|endotheli|capillary|artery/.test(t)) return 'vessel';
+  if (/tumor|cancer|melanoma|carcinoma|hepatocellular|tumour/.test(t)) return 'tumor';
+  if (/bone|osteo|osseo|trabecul/.test(t))          return 'bone';
+  if (/skin|wound|dermal|epiderm|burn/.test(t))     return 'skin';
+  if (/liver|hepatic|nafld|nash|fibros/.test(t))    return 'liver';
+  if (/neural|spinal|nerve|brain|neuro/.test(t))    return 'neural';
+  if (/hydrogel|gelatin|gelma|sealant|bioadhesi/.test(t)) return 'hydrogel';
+  if (/hemorrh|hemostat|bleed|coagul/.test(t))      return 'hemostasis';
+  if (/nanoparticle|nano-particle|nanocomposite|nanoplatelet/.test(t)) return 'nano';
+  if (/stem.cell|mesenchymal|msc|spheroid|organoid/.test(t))     return 'cells';
+  if (/immune|immunoth|checkpoint|t.cell|macrophage/.test(t)) return 'immune';
+  if (/drug|delivery|release|therapeutic|theranostic/.test(t)) return 'delivery';
+  return 'abstract';
+}
+
 // ───── JournalCover: editorial journal-cover artwork (deterministic per paper).
-// Renders as a vertical magazine cover with masthead, volume/issue, and abstract figure.
+// Renders as a vertical magazine cover with masthead, volume/issue, and topic figure.
 // Pass `cover` (URL) on a paper to override with a real cover image.
 function JournalCover({ paper, w = '100%', h = 260, variant }) {
   const [imgFailed, setImgFailed] = React.useState(false);
@@ -764,134 +800,368 @@ function JournalCover({ paper, w = '100%', h = 260, variant }) {
       </div>
     );
   }
-  const seed = [...(paper.date + paper.journal)].reduce((a,c) => a + c.charCodeAt(0), 0);
-  const v = variant != null ? variant : seed % 5;
-  // Palette per variant — each evokes a different journal aesthetic
+  const seed = [...(paper.date + paper.journal + (paper.title || ''))].reduce((a,c) => a + c.charCodeAt(0), 0);
+  const topic = detectPaperTopic(paper.title, paper.journal);
+  // Topic-driven palette — each topic has a signature color world
+  const topicPalettes = {
+    microneedle: { bg: '#0d1b2a', ink: '#e0f2fe', accent: '#7dd3fc', fig: '#38bdf8' },
+    chip:        { bg: '#0a1628', ink: '#e0e7ff', accent: '#818cf8', fig: '#6366f1' },
+    scaffold:    { bg: '#1a1410', ink: '#fef3c7', accent: '#fbbf24', fig: '#f59e0b' },
+    vessel:      { bg: '#1a0a0a', ink: '#fee2e2', accent: '#f87171', fig: '#dc2626' },
+    tumor:       { bg: '#1f0a1a', ink: '#fce7f3', accent: '#f472b6', fig: '#db2777' },
+    bone:        { bg: '#f5efe3', ink: '#0a0a0a', accent: '#92400e', fig: '#b45309' },
+    skin:        { bg: '#fef3e7', ink: '#1c1917', accent: '#c2410c', fig: '#ea580c' },
+    liver:       { bg: '#1a0f0a', ink: '#fed7aa', accent: '#fb923c', fig: '#ea580c' },
+    neural:      { bg: '#0f0a1f', ink: '#e9d5ff', accent: '#c084fc', fig: '#a855f7' },
+    hydrogel:    { bg: '#062e2a', ink: '#d1fae5', accent: '#6ee7b7', fig: '#10b981' },
+    hemostasis:  { bg: '#1a0708', ink: '#fecaca', accent: '#ef4444', fig: '#b91c1c' },
+    nano:        { bg: '#0a1f2a', ink: '#cffafe', accent: '#22d3ee', fig: '#06b6d4' },
+    cells:       { bg: '#0f1f0a', ink: '#dcfce7', accent: '#86efac', fig: '#22c55e' },
+    immune:      { bg: '#1f1a0a', ink: '#fef08a', accent: '#facc15', fig: '#eab308' },
+    delivery:    { bg: '#0a1f1f', ink: '#a7f3d0', accent: '#34d399', fig: '#059669' },
+    abstract:    { bg: '#1b1b2e', ink: '#e8e6ff', accent: '#8e7cc3', fig: '#b39ddb' },
+  };
+  // Legacy variant fallback (still supported but topic takes precedence)
   const palettes = [
-    { bg: '#0a1628', ink: '#f5e6d3', accent: '#d4a574', fig: '#f5a623' },   // Advanced family (warm on navy)
-    { bg: '#1a0f1e', ink: '#fde4e4', accent: '#c0392b', fig: '#e74c3c' },   // Small Structures (crimson)
-    { bg: '#062e2a', ink: '#d8f0ea', accent: '#2ecc71', fig: '#1abc9c' },   // Biomacromol (green)
-    { bg: '#1b1b2e', ink: '#e8e6ff', accent: '#8e7cc3', fig: '#b39ddb' },   // Nano (violet)
-    { bg: '#f5efe3', ink: '#0a0a0a', accent: '#b8410a', fig: '#b8410a' },   // Cream/editorial
+    { bg: '#0a1628', ink: '#f5e6d3', accent: '#d4a574', fig: '#f5a623' },
+    { bg: '#1a0f1e', ink: '#fde4e4', accent: '#c0392b', fig: '#e74c3c' },
+    { bg: '#062e2a', ink: '#d8f0ea', accent: '#2ecc71', fig: '#1abc9c' },
+    { bg: '#1b1b2e', ink: '#e8e6ff', accent: '#8e7cc3', fig: '#b39ddb' },
+    { bg: '#f5efe3', ink: '#0a0a0a', accent: '#b8410a', fig: '#b8410a' },
   ];
-  const p = palettes[v];
+  const v = variant != null ? variant : seed % 5;
+  // Use topic palette by default; respect explicit variant only as a tint hint
+  const p = topicPalettes[topic] || topicPalettes.abstract;
   const [year, month] = paper.date.split('.');
   const vol = ((parseInt(year) - 2000) * 4 + parseInt(month || 1) % 12);
   const issue = (seed % 12) + 1;
-  const isCream = v === 4;
 
-  // Abstract figure generator (varies by variant)
-  const Figure = () => (
-    <svg viewBox="0 0 200 200" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
-      <defs>
-        <radialGradient id={`jc${seed}`} cx="50%" cy="50%" r="55%">
-          <stop offset="0%" stopColor={p.fig} stopOpacity="0.9"/>
-          <stop offset="100%" stopColor={p.fig} stopOpacity="0"/>
-        </radialGradient>
-      </defs>
-      {v === 0 && (
-        <g>
-          <circle cx="100" cy="100" r="90" fill={`url(#jc${seed})`} opacity="0.6"/>
-          {[...Array(14)].map((_,i) => {
-            const a = (i / 14) * Math.PI * 2;
-            return <circle key={i} cx={100 + Math.cos(a)*55} cy={100 + Math.sin(a)*55}
-                           r={6 + (i%4)*3} fill="none" stroke={p.ink} strokeWidth="0.8" opacity="0.7"/>;
-          })}
-          <circle cx="100" cy="100" r="18" fill={p.accent}/>
-        </g>
-      )}
-      {v === 1 && (
-        <g>
-          {[...Array(30)].map((_,i) => {
-            const a = (i / 30) * Math.PI * 2 + seed;
-            const r = 20 + (i%5)*14;
-            return <line key={i} x1={100} y1={100}
-                         x2={100 + Math.cos(a)*r} y2={100 + Math.sin(a)*r}
-                         stroke={p.fig} strokeWidth="1.2" opacity={0.2 + (i%5)*0.15}/>;
-          })}
-          <circle cx="100" cy="100" r="70" fill="none" stroke={p.accent} strokeWidth="1.5"/>
-          <circle cx="100" cy="100" r="40" fill={p.accent} opacity="0.25"/>
-        </g>
-      )}
-      {v === 2 && (
-        <g>
-          {[...Array(40)].map((_,i) => {
-            const cx = 30 + ((i * 23 + seed) % 140);
-            const cy = 30 + ((i * 31 + seed * 3) % 140);
-            const r = 3 + (i%4)*3;
-            return <circle key={i} cx={cx} cy={cy} r={r} fill={p.fig} opacity={0.3 + (i%5)*0.12}/>;
-          })}
-          <rect x="30" y="30" width="140" height="140" fill="none" stroke={p.accent} strokeDasharray="3 3" strokeWidth="0.8"/>
-        </g>
-      )}
-      {v === 3 && (
-        <g>
-          {[...Array(8)].map((_,i) => {
-            const y = 30 + i*20;
-            return <path key={i} d={`M 20 ${y} Q 100 ${y-20+(i%2)*40} 180 ${y}`}
-                         fill="none" stroke={p.fig} strokeWidth="1.2" opacity={0.4 + (i%3)*0.2}/>;
-          })}
-          <circle cx="100" cy="100" r="32" fill={p.accent} opacity="0.4"/>
-          <circle cx="100" cy="100" r="12" fill={p.ink}/>
-        </g>
-      )}
-      {v === 4 && (
-        <g>
-          {[...Array(6)].map((_,i) => (
-            <g key={i} transform={`translate(100 100) rotate(${i * 60})`}>
-              <path d="M 0 0 Q 30 -40 60 0 T 0 0" fill={p.fig} opacity="0.3"/>
-            </g>
-          ))}
-          <circle cx="100" cy="100" r="8" fill={p.accent}/>
-          <circle cx="100" cy="100" r="60" fill="none" stroke={p.accent} strokeWidth="0.8"/>
-        </g>
-      )}
-    </svg>
-  );
+  // Single big confident topic glyph — used as a watermark in the cover.
+  // Style: ONE bold silhouette, minimal lines, editorial — not a busy diagram.
+  const TopicGlyph = () => {
+    const stroke = p.ink;
+    const fill = p.fig;
+    const strokeOp = 0.9;
+    const common = { fill: 'none', stroke, strokeWidth: 1.4, strokeLinecap: 'round', strokeLinejoin: 'round', opacity: strokeOp };
+    return (
+      <svg viewBox="0 0 200 200" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style={{ overflow: 'visible' }}>
+        <defs>
+          <radialGradient id={`g${seed}`} cx="35%" cy="30%" r="80%">
+            <stop offset="0%" stopColor={fill} stopOpacity="0.55"/>
+            <stop offset="60%" stopColor={fill} stopOpacity="0.12"/>
+            <stop offset="100%" stopColor={fill} stopOpacity="0"/>
+          </radialGradient>
+          <linearGradient id={`gl${seed}`} x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stopColor={p.accent} stopOpacity="0.35"/>
+            <stop offset="100%" stopColor={fill} stopOpacity="0"/>
+          </linearGradient>
+        </defs>
+        {/* Halo */}
+        <circle cx="100" cy="100" r="120" fill={`url(#g${seed})`}/>
+
+        {topic === 'microneedle' && (
+          <g>
+            {/* one giant needle in profile */}
+            <path d="M 100 30 L 118 165 L 82 165 Z" fill={fill} opacity="0.85"/>
+            <path d="M 100 30 L 118 165" {...common}/>
+            <path d="M 100 30 L 82 165" {...common}/>
+            <line x1="40" y1="170" x2="160" y2="170" {...common} strokeWidth="1.8"/>
+            {/* small companions */}
+            {[40,60,140,160].map((x,i) => (
+              <path key={i} d={`M ${x} 130 L ${x+8} 170 L ${x-8} 170 Z`} fill={fill} opacity="0.4"/>
+            ))}
+          </g>
+        )}
+
+        {topic === 'chip' && (
+          <g>
+            {/* one elegant serpentine channel */}
+            <path d="M 25 60 L 175 60 Q 185 60 185 75 Q 185 90 175 90 L 35 90 Q 25 90 25 105 Q 25 120 35 120 L 175 120 Q 185 120 185 135 Q 185 150 175 150 L 25 150"
+                  fill="none" stroke={fill} strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" opacity="0.85"/>
+            <path d="M 25 60 L 175 60 Q 185 60 185 75 Q 185 90 175 90 L 35 90 Q 25 90 25 105 Q 25 120 35 120 L 175 120 Q 185 120 185 135 Q 185 150 175 150 L 25 150"
+                  fill="none" stroke={p.accent} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/>
+            <circle cx="25" cy="60" r="5" fill={p.accent}/>
+            <circle cx="25" cy="150" r="5" fill={p.accent}/>
+          </g>
+        )}
+
+        {topic === 'scaffold' && (
+          <g>
+            {/* isometric cube lattice — confident geometry */}
+            {[0,1,2].map(z => [0,1,2].map(y => [0,1,2].map(x => {
+              const ox = 100 + (x-1)*32 + (y-1)*16, oy = 100 + (y-1)*16 - (z-1)*32;
+              return <g key={`${x}${y}${z}`} opacity={0.35 + ((x+y+z)%3)*0.2}>
+                <rect x={ox-7} y={oy-7} width="14" height="14" fill="none" stroke={fill} strokeWidth="1.2"/>
+              </g>;
+            }))).flat(2)}
+            <circle cx="100" cy="100" r="6" fill={p.accent}/>
+          </g>
+        )}
+
+        {topic === 'vessel' && (
+          <g>
+            {/* anatomical Y-branching tree */}
+            <path d="M 100 25 Q 100 70 100 90" fill="none" stroke={fill} strokeWidth="6" strokeLinecap="round"/>
+            <path d="M 100 90 Q 70 110 50 160" fill="none" stroke={fill} strokeWidth="5" strokeLinecap="round"/>
+            <path d="M 100 90 Q 130 110 150 160" fill="none" stroke={fill} strokeWidth="5" strokeLinecap="round"/>
+            <path d="M 70 110 Q 55 125 30 130" fill="none" stroke={fill} strokeWidth="3" strokeLinecap="round" opacity="0.8"/>
+            <path d="M 130 110 Q 145 125 170 130" fill="none" stroke={fill} strokeWidth="3" strokeLinecap="round" opacity="0.8"/>
+            <path d="M 50 160 L 40 180" fill="none" stroke={fill} strokeWidth="2" strokeLinecap="round" opacity="0.7"/>
+            <path d="M 50 160 L 60 180" fill="none" stroke={fill} strokeWidth="2" strokeLinecap="round" opacity="0.7"/>
+            <path d="M 150 160 L 140 180" fill="none" stroke={fill} strokeWidth="2" strokeLinecap="round" opacity="0.7"/>
+            <path d="M 150 160 L 160 180" fill="none" stroke={fill} strokeWidth="2" strokeLinecap="round" opacity="0.7"/>
+            <circle cx="100" cy="90" r="4" fill={p.accent}/>
+          </g>
+        )}
+
+        {topic === 'tumor' && (
+          <g>
+            {/* one big organic blob silhouette */}
+            <path d="M 100 35 C 145 35 175 70 165 105 C 175 140 140 170 100 165 C 60 170 25 140 35 105 C 25 70 55 35 100 35 Z"
+                  fill={fill} opacity="0.85"/>
+            <path d="M 100 35 C 145 35 175 70 165 105 C 175 140 140 170 100 165 C 60 170 25 140 35 105 C 25 70 55 35 100 35 Z"
+                  fill="none" stroke={p.ink} strokeWidth="1" opacity="0.4"/>
+            {/* a few internal cells */}
+            <circle cx="80" cy="90" r="10" fill={p.accent} opacity="0.7"/>
+            <circle cx="120" cy="115" r="8" fill={p.accent} opacity="0.7"/>
+            <circle cx="105" cy="80" r="5" fill={p.ink} opacity="0.5"/>
+          </g>
+        )}
+
+        {topic === 'bone' && (
+          <g>
+            {/* dumbbell bone silhouette */}
+            <path d="M 50 65 Q 35 65 35 80 Q 35 95 50 95 L 70 95 L 70 105 L 50 105 Q 35 105 35 120 Q 35 135 50 135
+                     L 150 135 Q 165 135 165 120 Q 165 105 150 105 L 130 105 L 130 95 L 150 95 Q 165 95 165 80 Q 165 65 150 65 Z"
+                  fill={fill} opacity="0.9"/>
+            {/* trabecular hint */}
+            {[...Array(6)].map((_,i) => (
+              <line key={i} x1={75 + i*12} y1="98" x2={75 + i*12} y2="102" stroke={p.ink} strokeWidth="1" opacity="0.5"/>
+            ))}
+          </g>
+        )}
+
+        {topic === 'skin' && (
+          <g>
+            {/* topographic skin layers */}
+            {[0,1,2,3,4].map(i => (
+              <path key={i}
+                d={`M 10 ${55+i*22} Q 60 ${48+i*22} 100 ${55+i*22} T 195 ${55+i*22}`}
+                fill="none" stroke={fill} strokeWidth={3 - i*0.3} strokeLinecap="round" opacity={0.95 - i*0.15}/>
+            ))}
+            {/* hair follicle/wound mark */}
+            <circle cx="100" cy="100" r="12" fill={p.accent} opacity="0.7"/>
+            <circle cx="100" cy="100" r="4" fill={p.ink}/>
+          </g>
+        )}
+
+        {topic === 'liver' && (
+          <g>
+            {/* anatomical liver silhouette */}
+            <path d="M 25 80 Q 35 55 80 55 Q 110 50 145 60 Q 180 70 175 105 Q 170 140 130 150 Q 90 158 60 145 Q 25 130 25 80 Z"
+                  fill={fill} opacity="0.85"/>
+            <path d="M 95 60 Q 92 100 70 140" fill="none" stroke={p.ink} strokeWidth="1.5" opacity="0.5"/>
+            <path d="M 130 65 Q 130 100 115 145" fill="none" stroke={p.ink} strokeWidth="1.2" opacity="0.4"/>
+          </g>
+        )}
+
+        {topic === 'neural' && (
+          <g>
+            {/* neuron silhouette */}
+            <circle cx="100" cy="100" r="22" fill={fill}/>
+            <circle cx="100" cy="100" r="10" fill={p.accent}/>
+            {[0,1,2,3,4,5,6].map(i => {
+              const a = (i/7)*Math.PI*2;
+              const x2 = 100 + Math.cos(a)*75, y2 = 100 + Math.sin(a)*75;
+              return <g key={i}>
+                <line x1={100 + Math.cos(a)*22} y1={100 + Math.sin(a)*22}
+                      x2={x2} y2={y2} stroke={fill} strokeWidth="2" strokeLinecap="round" opacity="0.85"/>
+                <circle cx={x2} cy={y2} r="4" fill={fill}/>
+                <line x1={x2} y1={y2} x2={x2 + Math.cos(a+0.4)*15} y2={y2 + Math.sin(a+0.4)*15} stroke={fill} strokeWidth="1.2" strokeLinecap="round" opacity="0.6"/>
+                <line x1={x2} y1={y2} x2={x2 + Math.cos(a-0.4)*15} y2={y2 + Math.sin(a-0.4)*15} stroke={fill} strokeWidth="1.2" strokeLinecap="round" opacity="0.6"/>
+              </g>;
+            })}
+          </g>
+        )}
+
+        {topic === 'hydrogel' && (
+          <g>
+            {/* one big fluid drop with internal lattice hint */}
+            <path d="M 100 30 Q 60 90 60 130 Q 60 165 100 170 Q 140 165 140 130 Q 140 90 100 30 Z"
+                  fill={fill} opacity="0.9"/>
+            <path d="M 100 30 Q 60 90 60 130 Q 60 165 100 170 Q 140 165 140 130 Q 140 90 100 30 Z"
+                  fill="none" stroke={p.ink} strokeWidth="1" opacity="0.35"/>
+            {/* highlight */}
+            <ellipse cx="85" cy="85" rx="12" ry="20" fill={p.ink} opacity="0.25"/>
+            {/* polymer mesh hint */}
+            {[...Array(5)].map((_,i) => (
+              <line key={i} x1={75} y1={120 + i*8} x2={125} y2={120 + i*8} stroke={p.accent} strokeWidth="0.8" opacity="0.45"/>
+            ))}
+          </g>
+        )}
+
+        {topic === 'hemostasis' && (
+          <g>
+            {/* big drop + concentric ripples */}
+            <circle cx="100" cy="100" r="80" fill="none" stroke={fill} strokeWidth="1" opacity="0.3"/>
+            <circle cx="100" cy="100" r="55" fill="none" stroke={fill} strokeWidth="1" opacity="0.5"/>
+            <path d="M 100 50 Q 75 90 75 125 Q 75 155 100 160 Q 125 155 125 125 Q 125 90 100 50 Z"
+                  fill={fill} opacity="0.95"/>
+            <ellipse cx="92" cy="95" rx="6" ry="14" fill={p.ink} opacity="0.3"/>
+          </g>
+        )}
+
+        {topic === 'nano' && (
+          <g>
+            {/* hexagonal molecular lattice */}
+            {[
+              [100,60],[140,80],[140,120],[100,140],[60,120],[60,80],
+              [100,100],
+              [180,60],[180,120],[20,60],[20,120],[100,20],[100,180]
+            ].map(([cx,cy],i) => (
+              <g key={i}>
+                <polygon points={
+                  [0,1,2,3,4,5].map(k => {
+                    const a = k*Math.PI/3;
+                    return `${cx + Math.cos(a)*15},${cy + Math.sin(a)*15}`;
+                  }).join(' ')
+                } fill="none" stroke={fill} strokeWidth="1.4" opacity={0.5 + (i%3)*0.2}/>
+                {i === 6 && <circle cx={cx} cy={cy} r="6" fill={p.accent}/>}
+              </g>
+            ))}
+            {/* connecting lines */}
+            {[[100,60,100,100],[140,80,100,100],[140,120,100,100],[100,140,100,100],[60,120,100,100],[60,80,100,100]]
+              .map(([x1,y1,x2,y2],i) => (
+                <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke={fill} strokeWidth="1" opacity="0.4"/>
+              ))}
+          </g>
+        )}
+
+        {topic === 'cells' && (
+          <g>
+            {/* spheroid cluster — one big, a few small */}
+            <circle cx="100" cy="100" r="50" fill={fill} opacity="0.8"/>
+            <circle cx="100" cy="100" r="50" fill="none" stroke={p.ink} strokeWidth="1" opacity="0.4"/>
+            {[[80,85,12],[115,95,9],[95,118,11],[125,118,7],[78,115,8]].map(([cx,cy,r],i) => (
+              <g key={i}>
+                <circle cx={cx} cy={cy} r={r} fill={p.accent} opacity="0.85"/>
+                <circle cx={cx} cy={cy} r={r*0.4} fill={p.ink} opacity="0.5"/>
+              </g>
+            ))}
+          </g>
+        )}
+
+        {topic === 'immune' && (
+          <g>
+            {/* antibody Y shape */}
+            <path d="M 100 100 L 100 165" stroke={fill} strokeWidth="8" strokeLinecap="round"/>
+            <path d="M 100 100 L 60 50" stroke={fill} strokeWidth="8" strokeLinecap="round"/>
+            <path d="M 100 100 L 140 50" stroke={fill} strokeWidth="8" strokeLinecap="round"/>
+            <circle cx="60" cy="50" r="12" fill={p.accent}/>
+            <circle cx="140" cy="50" r="12" fill={p.accent}/>
+            <circle cx="100" cy="165" r="10" fill={fill}/>
+            <circle cx="100" cy="100" r="6" fill={p.ink} opacity="0.7"/>
+          </g>
+        )}
+
+        {topic === 'delivery' && (
+          <g>
+            {/* nanocarrier with payload */}
+            <circle cx="100" cy="100" r="55" fill={fill} opacity="0.85"/>
+            <circle cx="100" cy="100" r="55" fill="none" stroke={p.ink} strokeWidth="1" opacity="0.4"/>
+            {/* surface ligands */}
+            {[...Array(16)].map((_,i) => {
+              const a = (i/16)*Math.PI*2;
+              return <line key={i} x1={100 + Math.cos(a)*55} y1={100 + Math.sin(a)*55}
+                                  x2={100 + Math.cos(a)*68} y2={100 + Math.sin(a)*68}
+                                  stroke={p.accent} strokeWidth="2" strokeLinecap="round" opacity="0.85"/>;
+            })}
+            {/* payload */}
+            <circle cx="100" cy="100" r="18" fill={p.accent}/>
+            <circle cx="92" cy="92" r="4" fill={p.ink} opacity="0.6"/>
+          </g>
+        )}
+
+        {topic === 'abstract' && (
+          <g>
+            {/* concentric rings — minimal editorial */}
+            <circle cx="100" cy="100" r="65" fill={fill} opacity="0.85"/>
+            <circle cx="100" cy="100" r="65" fill="none" stroke={p.ink} strokeWidth="1" opacity="0.3"/>
+            <circle cx="100" cy="100" r="40" fill="none" stroke={p.ink} strokeWidth="1" opacity="0.5"/>
+            <circle cx="100" cy="100" r="18" fill={p.accent}/>
+          </g>
+        )}
+      </svg>
+    );
+  };
 
   return (
     <div style={{
       width: w, height: h, overflow: 'hidden', position: 'relative',
-      background: p.bg, color: p.ink, borderRadius: 4,
+      background: `linear-gradient(155deg, ${p.bg} 0%, ${p.bg} 60%, ${shade(p.bg, p.accent)} 100%)`,
+      color: p.ink, borderRadius: 4,
       display: 'flex', flexDirection: 'column',
       fontFamily: sans,
-      boxShadow: '0 2px 8px rgba(0,0,0,0.12), 0 1px 0 rgba(255,255,255,0.04) inset',
+      boxShadow: '0 4px 16px rgba(0,0,0,0.18), 0 1px 0 rgba(255,255,255,0.06) inset',
     }}>
+      {/* Subtle grain overlay */}
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none', opacity: 0.06, mixBlendMode: 'overlay',
+        background: `radial-gradient(circle at 20% 15%, ${p.ink}40 0%, transparent 50%)`,
+      }}/>
+
+      {/* Big topic glyph as hero — fills the cover */}
+      <div style={{ position: 'absolute', inset: 0, padding: '34px 22px 32px',
+        display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <TopicGlyph/>
+      </div>
+
       {/* Top bar: masthead */}
       <div style={{
-        padding: '10px 12px 8px', borderBottom: `1px solid ${p.ink}22`,
-        display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',
+        position: 'relative', padding: '10px 12px 8px',
+        display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', zIndex: 2,
       }}>
         <div style={{
-          fontFamily: serif, fontSize: 17, fontStyle: 'italic', fontWeight: 600,
-          lineHeight: 1, letterSpacing: -0.2, color: p.accent,
+          fontFamily: serif, fontSize: 16, fontStyle: 'italic', fontWeight: 600,
+          lineHeight: 1, letterSpacing: -0.2, color: p.ink,
           textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap',
-          maxWidth: '75%',
+          maxWidth: '75%', textShadow: `0 1px 8px ${p.bg}`,
         }}>{paper.journal}</div>
-        <div style={{ fontFamily: mono, fontSize: 8, letterSpacing: 1, opacity: 0.6 }}>
+        <div style={{ fontFamily: mono, fontSize: 8, letterSpacing: 1, opacity: 0.7, color: p.ink }}>
           VOL {vol}
         </div>
       </div>
 
-      {/* Figure */}
-      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 8 }}>
-        <Figure/>
-      </div>
+      <div style={{ flex: 1 }}/>
 
       {/* Bottom bar */}
       <div style={{
-        padding: '8px 12px 10px', borderTop: `1px solid ${p.ink}22`,
-        display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end',
+        position: 'relative', padding: '8px 12px 10px',
+        display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', zIndex: 2,
       }}>
-        <div style={{ fontFamily: mono, fontSize: 8, letterSpacing: 1, opacity: 0.55 }}>
+        <div style={{ fontFamily: mono, fontSize: 8, letterSpacing: 1, opacity: 0.7, color: p.ink, textShadow: `0 1px 6px ${p.bg}` }}>
           № {issue.toString().padStart(2,'0')} · {paper.date}
         </div>
         <div style={{
-          fontFamily: mono, fontSize: 8, letterSpacing: 1, opacity: 0.55,
-        }}>KU-PPL</div>
+          fontFamily: mono, fontSize: 8, letterSpacing: 1, opacity: 0.7, color: p.ink, textShadow: `0 1px 6px ${p.bg}`,
+        }}>{topic.toUpperCase()}</div>
       </div>
     </div>
   );
+}
+
+// Mix two hex-ish colors for gradient end-stop
+function shade(a, b) {
+  // simple: return b at 35% over a
+  try {
+    const ha = a.replace('#',''), hb = b.replace('#','');
+    const ar = parseInt(ha.slice(0,2),16), ag = parseInt(ha.slice(2,4),16), ab = parseInt(ha.slice(4,6),16);
+    const br = parseInt(hb.slice(0,2),16), bg2 = parseInt(hb.slice(2,4),16), bb = parseInt(hb.slice(4,6),16);
+    const r = Math.round(ar*0.65 + br*0.35);
+    const g = Math.round(ag*0.65 + bg2*0.35);
+    const bl = Math.round(ab*0.65 + bb*0.35);
+    return '#' + [r,g,bl].map(x => x.toString(16).padStart(2,'0')).join('');
+  } catch { return a; }
 }
 
 Object.assign(window, {

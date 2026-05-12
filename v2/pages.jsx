@@ -282,7 +282,7 @@ function PeoplePage() {
                 ['2025.03 – ', '고려대학교 세종캠퍼스 혁신신약융합전공 겸임교수'],
                 ['2025.01 – ', '고려대학교 세종캠퍼스 첨단융합신약학과 겸임교수'],
                 ['2024.04 – ', '고려대학교 세종캠퍼스 헬스케어ICT융합전공 겸임교수'],
-                ['2023.01 – ', 'Terasaki Institute for Biomedical Innovation (TIBI), Los Angeles, USA'],
+                ['2023.01 – 2026.02', 'Terasaki Institute for Biomedical Innovation (TIBI), Los Angeles, USA'],
                 ['2023.01 – ', 'Centre for Biomaterials, Cellular and Molecular Theranostics (CBCMT), Vellore Institute of Technology, India'],
               ]}/>
             </CVSection>
@@ -963,7 +963,7 @@ function PublicationsPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 18 }}>
             {filtered.map((p, i) => (
               <a key={p.n} href={p.link} target="_blank" style={{ cursor: 'pointer', display: 'block', minWidth: 0 }}>
-                <JournalCover paper={{ date: `${p.y}.01`, journal: p.journal, cover: p.coverImg || null }} h={220} variant={i % 5}/>
+                <JournalCover paper={{ date: `${p.y}.01`, journal: p.journal, title: p.title, cover: p.coverImg || null }} h={220} variant={i % 5}/>
                 <div style={{ marginTop: 10 }}>
                   <div style={{ fontFamily: mono, fontSize: 14, color: B.accent, marginBottom: 2 }}>№{p.n} · {p.y}</div>
                   <div style={{ fontSize: 16, fontWeight: 600, letterSpacing: -0.1, lineHeight: 1.3, marginBottom: 3 }}>{p.journal}</div>
@@ -1208,10 +1208,11 @@ function NewsPage() {
   // Available years derived from data
   const years = ['All', ...Array.from(new Set(newsFull.map(n => n.date.slice(0,4)))).sort().reverse()];
 
+  const featured = newsFull.find(n => n.featured) || newsFull[0];
   const filtered = newsFull
+    .filter(n => n !== featured)
     .filter(n => filter === 'All' || n.type === filter)
     .filter(n => yearFilter === 'All' || n.date.startsWith(yearFilter));
-  const featured = newsFull.find(n => n.featured) || newsFull[0];
 
   return (
     <PageShell

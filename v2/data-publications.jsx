@@ -7,7 +7,7 @@ const publications = [
   // 2026
   { n: 132, y: 2026, authors: 'Lee T, Jang WJ, Kim G, Ha G, Kim M, Park S, Lee G, Cho H-J, Zhang YS, Kim HJ*, Lee JM*',
     title: 'Cyclic mechanical stretch suppresses intrinsic apoptosis in high metastatic melanoma',
-    journal: 'Materials Today Bio', vol: 'In Press', IF: 10.2, corr: true, link: 'https://doi.org/10.1016/j.mtbio.2026.103132' },
+    journal: 'Materials Today Bio', vol: '38:103132', IF: 10.2, corr: true, hanbitsa: true, link: 'https://doi.org/10.1016/j.mtbio.2026.103132' },
   { n: 131, y: 2026, authors: 'Kwon N, Hong Y, Jung S, Yoo D, Eo Y, Lee S, Jang WJ, Lee J, Lee T, Heo DN, Kim HJ, Yoon J, Kwon IK, Yang H, Min J, Yang DH',
     title: 'Fabrication of Transparent Microneedle Patch for Minimally Invasive Glucose Monitoring Optical Biosensor',
     journal: 'Small Structures', vol: '7;5;e70437', link: 'https://doi.org/10.1002/sstr.70437' },
