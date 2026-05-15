@@ -410,6 +410,9 @@ function NewsThumb({ item, w = '100%', h = 180, label = true }) {
 // Mirrors the full content of https://www.hanjunkim.co.kr/news — every item the PI lists there.
 // `image` field = URL (png/jpg). When absent, NewsThumb generates a themed placeholder.
 const newsFull = [
+  { date: '2026.05.15', type: 'award', title: '2025-2학기 우수강좌상 수상',
+    text: '수상 과목: PHAR278(00) 신약개발개론. 강의평가 상위 20% 강좌에 수여되는 고려대학교 우수강좌상입니다.',
+    image: 'v2/assets/news-20260515.png' },
   { date: '2026.05.12', type: 'paper', title: '한빛사 논문 선정 (23rd)',
     journal: 'Materials Today Bio', meta: 'IF 10.2 · JCR 6.9%',
     text: 'Cyclic mechanical stretch suppresses intrinsic apoptosis in high metastatic melanoma',
