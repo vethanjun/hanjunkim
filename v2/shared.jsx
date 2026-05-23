@@ -410,6 +410,12 @@ function NewsThumb({ item, w = '100%', h = 180, label = true }) {
 // Mirrors the full content of https://www.hanjunkim.co.kr/news — every item the PI lists there.
 // `image` field = URL (png/jpg). When absent, NewsThumb generates a themed placeholder.
 const newsFull = [
+  { date: '2026.05.23', type: 'milestone', title: 'Paper Citation > 7K',
+    text: 'Google Scholar 총 피인용 수 7,000회 돌파 — h-index 49, i10-index 94.',
+    image: 'v2/assets/news-20260523.png' },
+  { date: '2026.05.15', type: 'event', title: '스승의 날 — Teachers\u2019 Day with KU-PPL',
+    text: '\u201c스승의 은혜에 감사드립니다\u201d \u2014 Thanks to the Lab members!',
+    images: ['v2/assets/news-20260515-teachers-1.jpg', 'v2/assets/news-20260515-teachers-2.jpg'] },
   { date: '2026.05.15', type: 'award', title: '2025-2학기 우수강좌상 수상',
     text: '수상 과목: PHAR278(00) 신약개발개론. 강의평가 상위 20% 강좌에 수여되는 고려대학교 우수강좌상입니다.',
     image: 'v2/assets/news-20260515.png' },
@@ -473,6 +479,9 @@ const newsFull = [
   { date: '2025.06.04', type: 'award', title: '2024-2학기 석탑강의상 수상',
     text: '수상 과목: PHAR278(00) 신약개발개론. 상위 5% 강좌에 수여되는 고려대 석탑강의상입니다.',
     image: 'v2/assets/news-20250604.jpg' },
+  { date: '2025.05.15', type: 'event', title: '스승의 날 — Teachers\u2019 Day with KU-PPL',
+    text: '스승의 날을 맞아 연구실 학생들이 직접 준비한 케이크와 카네이션 꽃다발 \u2014 Thanks to the Lab members!',
+    images: ['v2/assets/news-20250515-1.jpg', 'v2/assets/news-20250515-2.jpg'] },
   { date: '2025.04.28', type: 'paper', title: '한빛사 논문 선정 (17th)',
     journal: 'SusMat', meta: 'IF 21.3 · JCR 1.5%',
     text: 'Advanced Facial Mask Using Roll-to-Roll Processed Superhydrophobic Vertically Aligned Carbon Nanotubes for Enhanced Antiviral Effects and Reusability',
@@ -742,6 +751,10 @@ const people = [
   { name: 'Yunseong Lee', ko: '학부연구생', group: 'ug',
     role: 'Undergraduate Researcher', since: '2026.03',
     affil: 'College of Pharmacy, Korea University',
+    tags: [] },
+  { name: 'Somin Lee', ko: '학부연구생', group: 'ug',
+    role: 'Undergraduate Researcher', since: '2026.05',
+    affil: 'College of Pharmacy, Department of Convergence Pharmaceutical Science, Korea University',
     tags: [] },
 ];
 

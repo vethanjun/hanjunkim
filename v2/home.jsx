@@ -226,6 +226,7 @@ window.HomePage = HomePage;
 
 // ───── Home news — simple list, separate from main newsFull
 const homeNews = [
+  { date: '2026.06', type: 'paper', journal: 'Journal of Biomedical Science', text: 'Research article accepted' },
   { date: '2026.05.15', type: 'award', text: '2025 2학기 우수강좌상 수상 (신약개발개론 · 상위 20%)' },
   { date: '2026.04', type: 'grant', text: '소재 Global Young Connect 과제 선정(총괄 연구책임자)' },
   { date: '2026.04.11', type: 'paper', journal: 'Small Structures', text: 'Research article accepted' },

@@ -1219,7 +1219,7 @@ function NewsPage() {
       eyebrow="── NEWS ARCHIVE"
       titleEn="News & updates"
       titleKo="소식"
-      intro={`from 2020 to present — 한빛사 선정 논문 22건, 석탑강의상·석탑연구상, citation milestones, 그리고 연구실 일상까지.`}
+      intro={`from 2020 to present — 한빛사 선정 논문 23건, 석탑강의상·석탑연구상, citation milestones, 그리고 연구실 일상까지.`}
     >
       {lightbox && <NewsLightbox item={lightbox} onClose={() => setLightbox(null)}/>}
       {/* Featured card */}
