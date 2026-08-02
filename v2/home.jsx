@@ -56,9 +56,9 @@ function HomePage({ onNav }) {
         borderTop: `1px solid ${line}`, borderBottom: `1px solid ${line}`, background: bg2,
       }}>
         {[
-          { n: '132', label: 'Peer-reviewed papers' },
+          { n: String((window.publications || []).length), label: 'Peer-reviewed papers' },
           { n: '7', label: 'Patents granted' },
-          { n: '8', label: 'Current lab members' },
+          { n: String((window.people || []).length), label: 'Current lab members' },
           { n: '2023', label: 'Lab founded' },
         ].map((m,i) => (
           <div key={i} style={{
@@ -226,6 +226,8 @@ window.HomePage = HomePage;
 
 // ───── Home news — simple list, separate from main newsFull
 const homeNews = [
+  { date: '2026.06', type: 'paper', journal: 'Toxicological Research', text: 'Review article published' },
+  { date: '2026.04', type: 'paper', journal: 'BioChip Letters', text: 'Review article accepted' },
   { date: '2026.06', type: 'paper', journal: 'Journal of Biomedical Science', text: 'Research article accepted' },
   { date: '2026.05.15', type: 'award', text: '2025 2학기 우수강좌상 수상 (신약개발개론 · 상위 20%)' },
   { date: '2026.04', type: 'grant', text: '소재 Global Young Connect 과제 선정(총괄 연구책임자)' },

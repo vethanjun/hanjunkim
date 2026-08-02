@@ -5,6 +5,17 @@ const PUB_COVERS = 30; // cover images count on source site
 
 const publications = [
   // 2026
+  { n: 135, y: 2026, authors: 'Bang IJ#, Kim MS#, Han Y, Kim GE, Lim JE, Park JY, Yoo J, Jang YS, Lee B, Kwak M, Park S, Jang W, Batjargal U, Lee MY, Kim M, Kim HJ*, Kim HR*',
+    title: 'Microphysiological system-based respiratory toxicity assessment: recent advances and regulatory perspectives',
+    journal: 'Toxicological Research', vol: 'In Press', corr: true, cofirst: true, published: true,
+    link: 'https://doi.org/10.1007/s43188-026-00372-w' },
+  { n: 134, y: 2026, authors: 'Kim YJ#, Das M#, Song J#, Das S, Kim HJ, Kim JK, Lee KY, Kim KK*, Lee HR*',
+    title: 'Targeting a genomic RNA G-quadruplex of dengue virus with small molecules as an alternative to protein-targeted therapeutics',
+    journal: 'Journal of Biomedical Science', vol: '33:55', published: true,
+    link: 'https://doi.org/10.1186/s12929-026-01262-x' },
+  { n: 133, y: 2026, authors: 'Jang W#, Kim MS#, Park S#, Batjargal U, Kwak M, Lee MY, Kim M, Kim HJ*',
+    title: 'Liver-on-a-Chip for Drug Metabolism, Toxicology, and Disease Modeling',
+    journal: 'BioChip Letters', vol: '21(1):84-107', corr: true, cofirst: true },
   { n: 132, y: 2026, authors: 'Lee T, Jang WJ, Kim G, Ha G, Kim M, Park S, Lee G, Cho H-J, Zhang YS, Kim HJ*, Lee JM*',
     title: 'Cyclic mechanical stretch suppresses intrinsic apoptosis in high metastatic melanoma',
     journal: 'Materials Today Bio', vol: '38:103132', IF: 10.2, corr: true, hanbitsa: true, link: 'https://doi.org/10.1016/j.mtbio.2026.103132' },
