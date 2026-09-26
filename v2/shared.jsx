@@ -410,6 +410,12 @@ function NewsThumb({ item, w = '100%', h = 180, label = true }) {
 // Mirrors the full content of https://www.hanjunkim.co.kr/news — every item the PI lists there.
 // `image` field = URL (png/jpg). When absent, NewsThumb generates a themed placeholder.
 const newsFull = [
+  { date: '2026.08.28', type: 'award', title: '2026 한국동물실험대체법학회 참가 & Ulziituya Batjargal 학생 우수포스터상 수상',
+    text: '제23차 한국동물실험대체법학회 정기학술대회 (KSAAE Annual Meeting · 부산항국제전시컨벤션센터 BPEX, 2026.08.26–08.28) 참석 — Ulziituya Batjargal 학생 우수포스터상 수상.',
+    images: ['v2/assets/news-20260828-ksaae-1.jpg', 'v2/assets/news-20260828-ksaae-2.jpg', 'v2/assets/news-20260828-ksaae-3.png'] },
+  { date: '2026.06.12', type: 'event', title: '삼성 Global Technology Conference 참가 및 발표',
+    text: 'Samsung Global Technology Conference (2026.06.11–06.12) — "Materials-Driven Biointerfaces: Ionic-Electronic-Biological Coupling" 세션 참가 및 발표.',
+    images: ['v2/assets/news-20260612-gtc-1.jpg', 'v2/assets/news-20260612-gtc-2.jpg'] },
   { date: '2026.06.04', type: 'award', title: 'KU-PPL 2026 GCIM 참가 & 김민석 학생 Best Poster Award 수상',
     text: 'GCIM 2026 & MRS-K Spring Meeting (제주국제컨벤션센터, 2026.05.31–06.04) 참석 — "Engineering a GelMA-Based 3D Immune-Integrated Bronchus-on-a-Chip for Advanced Airway Microenvironment Modeling" (Minseok Kim, Minjin Kwak, Minjeong Kim, Hanjun Kim*)로 Best Poster Award 수상.',
     images: ['v2/assets/news-20260604-gcim-1.jpg', 'v2/assets/news-20260604-gcim-2.jpeg'] },
